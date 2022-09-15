@@ -1,4 +1,6 @@
 import React from 'react'
+import BasicDateRangePicker from './BasicDateRangePicker'
+
 
 const SearchBar = () => {
     return (
@@ -8,7 +10,8 @@ const SearchBar = () => {
                 <input type="text" id="search-city" name="search-city" placeholder='Paris, Katmandhu, Cancun?' className='focus:outline-none' />
             </div>
             <div className='flex flex-col justify-between'>
-                <p>date picker component goes here</p>
+                <h1 className=''>Dates</h1>
+                <BasicDateRangePicker />
             </div>
             <button className='bg-green-pine justify-center text-white my-auto w-[16vw] h-full'>Start Exploring</button>
         </div>
