@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const CreateTrip = () => {
-  return (
-    <div>CreateTrip</div>
-  )
-}
+  return <div>CreateTrip</div>;
+};
 
-export default CreateTrip
+export default CreateTrip;

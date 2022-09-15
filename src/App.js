@@ -7,7 +7,7 @@ import UserProfile from "./components/UserProfile";
 import DisplayTrips from "./components/DisplayTrips";
 import DisplayOneTrip from "./components/DisplayOneTrip";
 import Authentication from "./components/Authentication";
-import Layout from './components/Layout'
+import Layout from "./components/Layout";
 
 function App() {
   return (
