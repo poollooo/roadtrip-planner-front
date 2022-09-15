@@ -1,13 +1,7 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
 
 const SearchResult = () => {
-  return (
-    <div>
-      SearchResult
-      <Outlet />
-    </div>
-  );
+  return <div>SearchResult</div>;
 };
 
 export default SearchResult;
