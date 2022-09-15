@@ -117,7 +117,7 @@ const Footer = () => {
       </div>
       <div className="border-t-2 border-grey flex justify-between mt-4">
         <p className="mt-2 text-green-pine">
-          CopyRight &copy;RoadTripPlanner. All Rights Reserved.
+          Copyright &copy;RoadTripPlanner. All Rights Reserved.
         </p>
         <p className="mt-2 text-green-pine">DesignBy: Yu-Se-Potard</p>
       </div>
