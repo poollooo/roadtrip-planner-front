@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
@@ -6,8 +6,10 @@ import { LocalizationProvider } from '@mui/x-date-pickers-pro';
 import { AdapterDayjs } from '@mui/x-date-pickers-pro/AdapterDayjs';
 import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
 
-export default function BasicDateRangePicker() {
-    const [value, setValue] = React.useState([null, null]);
+import { formatAs } from '../utils/formatDate'
+
+export default function BasicDateRangePicker({ searchQuery, setSearchQuery }) {
+    const [value, setValue] = useState([null, null]);
 
     return (
         <LocalizationProvider
@@ -18,6 +20,12 @@ export default function BasicDateRangePicker() {
                 value={value}
                 onChange={(newValue) => {
                     setValue(newValue);
+                    // the start date and end date in the searchQuery
+                    setSearchQuery({
+                        ...searchQuery,
+                        startDate: formatAs.yearMonthDate(newValue[0].$d),
+                        endDate: formatAs.yearMonthDate(newValue[1].$d),
+                    })
                 }}
                 renderInput={(startProps, endProps) => (
                     <React.Fragment>
