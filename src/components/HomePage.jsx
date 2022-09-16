@@ -6,9 +6,13 @@ import DisplayCards from "./DisplayCards";
 const HomePage = () => {
   return (
     <div className="flex flex-row justify-center py-8">
-      <div className="items-center">
-        <img src={HeroImage} alt="logo" className="w-[80vw]" />
-        <SearchBar />
+      <div className="items-center relative">
+        <div>
+          <img src={HeroImage} alt="logo" className="w-[80vw]" />
+        </div>
+        <div className="absolute bottom-16 w-[100%] py-8">
+          <SearchBar />
+        </div>
       </div>
     </div>
       <div className="flex flex-col align-center gap-20">
