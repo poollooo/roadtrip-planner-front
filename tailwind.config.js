@@ -8,6 +8,7 @@ module.exports = {
       colors: {
         green: {
           pine: "#03666B",
+          night: "#07232c",
         },
       },
     },
