@@ -14,7 +14,7 @@ const Card = (props) => {
         />
       </div>
       {/* loc icon */}
-      <div className="flex items-center gap-1 lg:h-1/5 rounded-b-md pt-2">
+      <div className="flex items-center gap-1 lg:h-1/5 pt-2">
         <img src={iconLoc} alt="location point" className="w-8 h-8" />
         {/* TRIP info */}
         <div>
