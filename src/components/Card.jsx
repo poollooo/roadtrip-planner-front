@@ -4,7 +4,7 @@ import iconLoc from "../images/localisation-icon.png";
 const Card = (props) => {
   const { title, desc } = props;
   return (
-    <div className="flex flex-col gap-1 ">
+    <div className="flex flex-col gap-1 w-[20rem]">
       {/* images */}
       <div className="h-4/5  w-[full] lg:w-[20rem]">
         <img

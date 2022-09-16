@@ -12,7 +12,7 @@ const HomePage = () => {
           <p className="text-xl font-bold">
             A life without journeys is one not lived at all
           </p>
-          <p className="italic">
+          <p className="italic text-center">
             The most visited places to go on an adventure, based on millions of
             searches.
           </p>
