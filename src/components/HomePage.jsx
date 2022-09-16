@@ -1,17 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import HeroImage from "../images/Hero-Image.svg";
 import SearchBar from "./SearchBar";
 import DisplayCards from "./DisplayCards";
 
-const initialQuery = {
-  city: '',
-  startDate: '',
-  endDate: '',
-}
-
 const HomePage = () => {
-  const [searchQuery, setSearchQuery] = useState(initialQuery);
-  console.log('searchQuery is :', searchQuery)
 
   return (
     <>
@@ -21,7 +13,7 @@ const HomePage = () => {
             <img src={HeroImage} alt="logo" className="w-[80vw]" />
           </div>
           <div className="absolute bottom-16 w-[100%] py-8">
-            <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+            <SearchBar />
           </div>
         </div>
       </div>
