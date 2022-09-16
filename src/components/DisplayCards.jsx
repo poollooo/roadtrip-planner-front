@@ -5,7 +5,7 @@ const DisplayCards = (props) => {
   const { headerContent, trip } = props;
 
   return (
-    <div className=" flex flex-col gap-5 w-full lg:w-fit ">
+    <div className=" flex flex-col gap-5 w-full lg:w-fit">
       {/* Header */}
       <div className="flex justify-between ">
         <p className="font-bold text-2xl">{headerContent}</p>
