@@ -5,10 +5,9 @@ import HeroImage from '../images/Hero-Image.svg'
 
 const SearchBar = () => {
     return (
-        <div className="flex flex-row justify-between items-center mx-auto h-20 bg-white border-solid border-[2px] border-green-pine rounded-md text-black w-[70vw]">
-            <div className='flex flex-col justify-between pl-4 w-[20vw] gap-1'>
-                <h1 className='text-md text-green-pine'>Search a city</h1>
-                <input type="text" id="search-city" name="search-city" placeholder='Paris, Katmandhu, Cancun?' className='focus:outline-none' />
+        <div className="flex flex-row justify-between items-center mx-auto h-20 bg-white border-solid border-[2px] border-green-pine rounded-2xl text-black w-[70vw]">
+            <div className='flex flex-col justify-center pl-4 w-[20vw]'>
+                <input type="text" id="search-city" name="search-city" placeholder='Search a city' className='focus:outline-none text-lg' />
             </div>
             <div className='flex flex-col justify-between w-[30vw]'>
                 <BasicDateRangePicker />
