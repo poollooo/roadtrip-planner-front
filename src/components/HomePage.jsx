@@ -5,16 +5,17 @@ import DisplayCards from "./DisplayCards";
 
 const HomePage = () => {
   return (
-    <div className="flex flex-row justify-center py-8">
-      <div className="items-center relative">
-        <div>
-          <img src={HeroImage} alt="logo" className="w-[80vw]" />
-        </div>
-        <div className="absolute bottom-16 w-[100%] py-8">
-          <SearchBar />
+    <>
+      <div className="flex flex-row justify-center py-8">
+        <div className="items-center relative">
+          <div>
+            <img src={HeroImage} alt="logo" className="w-[80vw]" />
+          </div>
+          <div className="absolute bottom-16 w-[100%] py-8">
+            <SearchBar />
+          </div>
         </div>
       </div>
-    </div>
       <div className="flex flex-col align-center gap-20">
         <div className="flex flex-col gap-10">
           <DisplayCards trip={true} headerContent={"My trips"}></DisplayCards>
@@ -35,6 +36,7 @@ const HomePage = () => {
           ></DisplayCards>
         </div>
       </div>
+    </>
   );
 };
 
