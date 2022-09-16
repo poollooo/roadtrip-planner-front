@@ -19,9 +19,6 @@ const initialQuery = {
 
 function App() {
   const [searchQuery, setSearchQuery] = useState(initialQuery);
-  console.log(searchQuery)
-
-
 
   return (
     //wrap the whole app in the queryContext
