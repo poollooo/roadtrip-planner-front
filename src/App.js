@@ -4,7 +4,7 @@ import HomePage from "./components/HomePage";
 import SearchResult from "./components/SearchResult";
 import CreateTrip from "./components/CreateTrip";
 import UserProfile from "./components/UserProfile";
-import DisplayTrips from "./components/DisplayTrips";
+import DisplayCards from "./components/DisplayCards";
 import DisplayOneTrip from "./components/DisplayOneTrip";
 import Authentication from "./components/Authentication";
 import Layout from "./components/Layout";
@@ -21,7 +21,7 @@ function App() {
             <Route path="/:city/new-trip" element={<CreateTrip />} />
 
             <Route path="/users/:username" element={<UserProfile />} />
-            <Route path="/users/:username/trips" element={<DisplayTrips />} />
+            <Route path="/users/:username/trips" element={<DisplayCards />} />
 
             <Route
               path="/users/:username/trips/:tripId"
