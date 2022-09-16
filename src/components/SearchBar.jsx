@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import BasicDateRangePicker from './BasicDateRangePicker'
 import { Link } from 'react-router-dom'
+import QueryContext from '../Context/QueryContext'
 
 
-const SearchBar = ({ searchQuery, setSearchQuery }) => {
+const SearchBar = () => {
     const [searchCity, setSearchCity] = useState('');
+    const { searchQuery, setSearchQuery } = useContext(QueryContext);
 
     const handleSearch = (e) => {
         setSearchCity(e.target.value.toLocaleLowerCase())
@@ -27,7 +29,7 @@ const SearchBar = ({ searchQuery, setSearchQuery }) => {
                 />
             </div>
             <div className='w-[30vw]'>
-                <BasicDateRangePicker searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+                <BasicDateRangePicker />
             </div>
             <Link to={searchCity} className='bg-green-pine w-[16vw] h-full rounded-tr-2xl rounded-br-2xl'>
                 <button className='justify-center lg:text-[1.5vw] text-[2vw] text-white w-[16vw] h-full'>Start Exploring</button>
