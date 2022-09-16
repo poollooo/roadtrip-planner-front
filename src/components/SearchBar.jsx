@@ -1,6 +1,5 @@
 import React from 'react'
 import BasicDateRangePicker from './BasicDateRangePicker'
-import HeroImage from '../images/Hero-Image.svg'
 
 
 const SearchBar = () => {
