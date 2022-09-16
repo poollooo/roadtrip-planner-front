@@ -56,7 +56,7 @@ const Footer = () => {
               className="bg-gray-100 h-10"
               placeholder="Email"
             />
-            <button className="h-10 w-24 bg-[#07232c] text-white">
+            <button className="h-10 w-24 bg-green-night text-white">
               Subscribe
             </button>
           </form>
