@@ -9,18 +9,22 @@ const Header = () => {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 
   return (
-    <header className="flex flex-row justify-between bg-white px-16">
-      <img src={logo} alt="Road-Trip-Planner" className="w-40 h-auto my-8 mx-8" />
-      <nav className="flex flex-row justify-between items-center">
-        <ul className="flex flex-row justify-between">
+    <header className="flex flex-row justify-between bg-white">
+      <img
+        src={logo}
+        alt="Road-Trip-Planner"
+        className="w-20 sm:w-30 md:w-40 lg:w-40 h-auto my-8 mx-8"
+      />
+      <nav className="flex flex-row justify-between items-center text-center ">
+        <ul className="flex flex-row justify-between ">
           <li className="mx-4">
             <Link className="hover:text-green-pine">
-              <p>Home</p>
+              <p className="text-xs sm:text-sm md:text-md lg:text-lg">Home</p>
             </Link>
           </li>
           <li className="mx-4">
             <Link className="hover:text-green-pine">
-              <p>About</p>
+              <p className="text-xs sm:text-sm md:text-md lg:text-lg">About</p>
             </Link>
           </li>
           {isLoggedIn ? (
