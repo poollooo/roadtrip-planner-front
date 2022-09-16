@@ -12,7 +12,7 @@ export default function BasicDateRangePicker() {
     return (
         <LocalizationProvider
             dateAdapter={AdapterDayjs}
-            localeText={{ start: 'Check-in', end: 'Check-out' }}
+            localeText={{ start: 'Start of your trip', end: 'End of your trip' }}
         >
             <DateRangePicker
                 value={value}
