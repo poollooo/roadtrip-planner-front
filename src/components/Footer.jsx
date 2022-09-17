@@ -5,18 +5,15 @@ import * as svg from "../images/svg";
 const Footer = () => {
   return (
     <footer className="p-8">
-      <div className="flex flex-col pb-2 justify-between md:flex-row flex-wrap content-end">
-        <div className="flex flex-col justify-between px-2 pb-2  md:basis-1/3 lg:basis-1/5">
-          <img
-            src={logo}
-            alt="RoadTripPlanner"
-            className="w-10 sm:w-16 md:w-24 lg:w-28"
-          />
-          <p className="text-xs sm:text-xs md:text-sm lg:text-sm">
+      <div className="gap-y-4 leading-loose md:flex md:flex-wrap md:justify-between">
+        <div className="text-xs max-w-xs sm:max-w-sm sm:text-sm md:max-w-md md:text-md lg:max-w-lg">
+          <img src={logo} alt="RoadTripPlanner" className="w-1/5 sm:w-2/5" />
+          <p className="max-w-xs">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur
             libero, rem exercitationem odit totam eos hic vitae repellat fuga.
           </p>
-          <ul className="flex flex-row ">
+
+          <ul className=" flex ">
             <li className="w-2 sm:w-3 md:w-5 mx-1">{svg.LinkedInSvg()}</li>
             <li className="w-2 sm:w-3 md:w-5 mx-1">{svg.TwitterSvg()}</li>
             <li className="w-2 sm:w-3 md:w-5 mx-1">{svg.SlackSvg()}</li>
@@ -27,34 +24,30 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        <div className="flex flex-col items-center md:basis-1/3 pl-0 lg:basis-1/5  xl:pl-17 ">
+        <div className="text-xs max-w-xs sm:text-sm md:text-md sm:max-w-sm md:max-w-md lg:max-w-lg">
           <h4>
-            <strong className="text-xs sm:text-xs md:text-sm lg:text-base">
-              Company
-            </strong>
+            <strong>Company</strong>
           </h4>
-          <ul className="leading-1 text-xs whitespace-nowrap sm:text-xs md:text-sm lg:text-base">
+          <ul>
             <li>About us</li>
             <li>Careers</li>
             <li>Blog</li>
             <li>Pricing</li>
           </ul>
         </div>
-        <div className=" md:basis-1/3 lg:basis-1/5">
+        <div className="text-xs sm:text-sm md:text-md max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
           <h4>
-            <strong className="text-xs sm:text-xs md:text-sm lg:text-base">
-              Business Resources
-            </strong>
+            <strong>Business Resources</strong>
           </h4>
-          <ul className="text-xs leading-1 sm:text-xs  md:text-sm  lg:text-base">
+          <ul>
             <li>How it Works</li>
             <li>Proposal Trips programmes</li>
             <li>Invoice</li>
             <li>B2B Guide</li>
           </ul>
         </div>
-        <div className="w-min:20  lg:basis-2/5">
-          <h4 className="leading-8 sm:text-xs md:text-sm lg:text-base">
+        <div className="text-xs sm:text-sm md:text-md max-w-xs sm:max-w-sm md:max-w-md md:self-start lg:max-w-lg">
+          <h4>
             <strong>Join our News Letter</strong>
           </h4>
           <form>
@@ -68,7 +61,7 @@ const Footer = () => {
               Subscribe
             </button>
           </form>
-          <p className="mt-1 text-xs sm:text-xs md:text-sm lg:text-base">
+          <p className="max-w-sm">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
             molestias facere repudiandae error eveniet minima nam numquam nihil
             excepturi natus odit officia quis deleniti, tenetur exercitationem
@@ -76,13 +69,11 @@ const Footer = () => {
           </p>
         </div>
       </div>
-      <div className="border-t-2 border-grey flex justify-between mt-4">
-        <p className="mt-1 text-xs md:text-sm text-green-pine">
+      <div className="text-xs border-t-2 border-grey-50 flex justify-between mt-4">
+        <p className="mt-1  text-green-pine">
           Copyright &copy;RoadTripPlanner. All Rights Reserved.
         </p>
-        <p className="mt-1 text-xs md:text-sm text-green-pine">
-          DesignBy: Yu-Se-Potard
-        </p>
+        <p className="mt-1  text-green-pine">DesignBy: Yu-Se-Potard</p>
       </div>
     </footer>
   );
