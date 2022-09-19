@@ -4,6 +4,7 @@ import SearchBar from "./SearchBar";
 import DisplayCards from "./DisplayCards";
 
 const HomePage = () => {
+
   return (
     <>
       <div className="flex flex-row justify-center pb-16">
