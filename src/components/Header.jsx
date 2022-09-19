@@ -2,13 +2,17 @@ import React from "react";
 import logo from "../images/Logo.svg";
 import { Link } from "react-router-dom";
 import profilePic from "../images/ProfilePicture.svg";
+import { useContext } from "react";                     // <== IMPORT 
+import { AuthContext } from "../Context/AuthContext";
 
 const Header = () => {
+  const { isLoggedIn, user } = useContext(AuthContext);
+
   return (
-    <header className="flex flex-row justify-between bg-white">
+    <header className="flex flex-row justify-between bg-white px-16">
       <img src={logo} alt="Road-Trip-Planner" className="w-40 h-auto my-8 mx-8" />
-      <nav className="flex flex-row justify-between items-center text-center ">
-        <ul className="flex flex-row justify-between ">
+      <nav className="flex flex-row justify-between items-center">
+        <ul className="flex flex-row justify-between">
           <li className="mx-4">
             <Link className="hover:text-green-pine">
               <p>Home</p>
@@ -19,16 +23,32 @@ const Header = () => {
               <p>About</p>
             </Link>
           </li>
-          <li className="mx-4">
-            <Link className="hover:text-green-pine">
-              <p>My Trips</p>
-            </Link>
-          </li>
+          {!isLoggedIn ? (
+            <>
+              <li className="mx-4">
+                <Link className="hover:text-green-pine">
+                  <p>My Trips</p>
+                </Link>
+              </li>
+              <li className="mx-4">
+                <Link className="hover:text-green-pine">
+                  <button>Log out</button>
+                </Link>
+              </li>
+            </>
+          ) :
+            <li className="mx-4">
+              <Link className="hover:text-green-pine">
+                <button>Sign up</button>
+              </Link>
+            </li>
+          }
         </ul>
-
-        <Link>
-          <img src={profilePic} alt="ProfilePicture" className="mx-16" />
-        </Link>
+        {!isLoggedIn && (
+          <Link>
+            <img src={profilePic} alt="ProfilePicture" className="ml-8" />
+          </Link>
+        )}
       </nav>
     </header>
   );
