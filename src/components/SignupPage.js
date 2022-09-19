@@ -4,26 +4,26 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const API_URL = "http://localhost:3003";
+const API_URL = "http://localhost:3003/api";
 
 
 function SignupPage(props) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [name, setName] = useState("");
+    const [username, setUsername] = useState("");
     const [errorMessage, setErrorMessage] = useState(undefined);
 
     const navigate = useNavigate();
 
     const handleEmail = (e) => setEmail(e.target.value);
     const handlePassword = (e) => setPassword(e.target.value);
-    const handleName = (e) => setName(e.target.value);
+    const handleUsername = (e) => setUsername(e.target.value);
 
 
     const handleSignupSubmit = (e) => {
         e.preventDefault();
         // Create an object representing the request body
-        const requestBody = { email, password, name };
+        const requestBody = { email, password, username };
 
         // Make an axios request to the API
         // If POST request is successful redirect to login page
@@ -40,41 +40,53 @@ function SignupPage(props) {
 
 
     return (
-        <div className="SignupPage">
-            <h1>Sign Up</h1>
-
-            <form onSubmit={handleSignupSubmit}>
-                <label>Email:</label>
-                <input
-                    type="email"
-                    name="email"
-                    value={email}
-                    onChange={handleEmail}
-                />
-
-                <label>Password:</label>
-                <input
-                    type="password"
-                    name="password"
-                    value={password}
-                    onChange={handlePassword}
-                />
-
-                <label>Name:</label>
-                <input
-                    type="text"
-                    name="name"
-                    value={name}
-                    onChange={handleName}
-                />
-
-                <button type="submit">Sign Up</button>
+        <div className="flex flex-col items-center text-center bg-gray-50 shadow-lg rounded-lg mx-48">
+            <h1 className="text-3xl font-bold pt-8">Welcome on Roadtrip Planner !
+                <br />
+                <span className="text-lg font-normal">Create an account to start planning your next adventure</span>
+            </h1>
+            <form className="flex flex-col py-8 gap-8 mx-48" onSubmit={handleSignupSubmit}>
+                <div className="flex flex-row justify-between items-center outline-none gap-8">
+                    <label className="w-24 text-left">Email:</label>
+                    <input
+                        type="email"
+                        name="email"
+                        value={email}
+                        onChange={handleEmail}
+                        className="border-2 border-gray-300 w-[15vw] rounded-lg px-4 py-2 focus:outline-none focus:border-green-pine"
+                    />
+                </div>
+                <div className="flex flex-row justify-between items-center outline-none gap-8">
+                    <label className="w-24 text-left">Username:</label>
+                    <input
+                        type="text"
+                        name="username"
+                        value={username}
+                        onChange={handleUsername}
+                        className="border-2 border-gray-300 w-[15vw] rounded-lg px-4 py-2 focus:outline-none focus:border-green-pine"
+                    />
+                </div>
+                <div className="flex flex-row justify-between items-center outline-none gap-8">
+                    <label className="w-24 text-left">Password:</label>
+                    <input
+                        type="password"
+                        name="password"
+                        value={password}
+                        onChange={handlePassword}
+                        className="border-2 border-gray-300 w-[15vw] rounded-lg px-4 py-2 focus:outline-none focus:border-green-pine"
+                    />
+                </div>
+                <button type="submit" className="h-12 hover:text-green-pine hover:bg-white hover:border-2 border-2 border-green-pine hover:border-green-pine text-xl bg-green-pine rounded-lg text-white ">
+                    <p className="flex justify-center items-around">
+                        Sign up
+                    </p>
+                </button>
             </form>
-
             {errorMessage && <p className="error-message">{errorMessage}</p>}
-
-            <p>Already have account?</p>
-            <Link to={"/login"}> Login</Link>
+            <div className="flex flex-row gap-2 pt-4 pb-8">
+                <p className="text-md">Already have an account?</p>
+                <Link className="hover:text-green-pine text-md" to={"/login"}> Login</Link>
+            </div>
         </div>
     )
 }
