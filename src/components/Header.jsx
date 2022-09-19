@@ -6,7 +6,7 @@ import { useContext } from "react";                     // <== IMPORT
 import { AuthContext } from "../Context/AuthContext";
 
 const Header = () => {
-  const { isLoggedIn, user } = useContext(AuthContext);
+  const { isLoggedIn } = useContext(AuthContext);
 
   return (
     <header className="flex flex-row justify-between bg-white px-16">
