@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import SearchCategory from "./SearchCategory";
+import "./SearchResult.scss";
 
 const SearchResult = () => {
   const { city } = useParams();
   const [searchresult, setSearchResult] = useState();
-  console.log(searchresult);
+
   useEffect(() => {
     const config = {
       method: "get",
@@ -20,17 +22,36 @@ const SearchResult = () => {
       });
   }, [city]);
 
+  if (!searchresult) {
+    return <h1>Loading</h1>;
+  }
+
+  const restaurantList = searchresult.foundedCity.filter(
+    (ele) => ele.category === "restaurant"
+  );
+  const attractionList = searchresult.foundedCity.filter(
+    (ele) => ele.category === "attraction"
+  );
+
   return (
-    <div className="flex flex-col text-center ">
-      <h1 className="text-2xl lg:text-7xl text-center leading-relaxed">
+    <div className="Search-result-container">
+      <h1 className="Search-header">
         How to spend 5 days <br /> in {city}
       </h1>
-      <p className="my-8">Sep 14 , 2002 - Sep 18 , 2022</p>
-
-      <section className="border-2 flex flex-col items-start">
-        <h2>{city}</h2>
-        <p className="text-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, nam dicta temporibus, veritatis in rem expedita laborum, tempore ab dolor voluptatibus fuga error. Eum earum nam nobis quod asperiores soluta!</p>
+      <p className="Search-date">Sep 14 , 2002 - Sep 18 , 2022</p>
+      <section className="City-intro">
+        <h2>
+          <strong>{city}</strong>
+        </h2>
+        <p className="City-description">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus,
+          nam dicta temporibus, veritatis in rem expedita laborum, tempore ab
+          dolor voluptatibus fuga error. Eum earum nam nobis quod asperiores
+          soluta!
+        </p>
       </section>
+      <SearchCategory searchresult={restaurantList} />
+      <SearchCategory searchresult={attractionList} />
     </div>
   );
 };
