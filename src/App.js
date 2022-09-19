@@ -1,4 +1,5 @@
 import "./App.css";
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import SearchResult from "./components/SearchResult";
@@ -56,6 +57,7 @@ function App() {
                     <DisplayOneTrip />
                   </IsPrivate>}
               />
+            <Route path="/calendartest" element={<DisplayOneTrip />} />
 
               <Route path="/signup" element={
                 <IsAnon>
