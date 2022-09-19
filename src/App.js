@@ -6,11 +6,12 @@ import CreateTrip from "./components/CreateTrip";
 import UserProfile from "./components/UserProfile";
 import DisplayCards from "./components/DisplayCards";
 import DisplayOneTrip from "./components/DisplayOneTrip";
-import Authentication from "./components/Authentication";
+import SignupPage from "./components/SignupPage";
 import Layout from "./components/Layout";
 import { useState } from "react";
 import QueryContext from "./Context/QueryContext";
 import { SearchContextProvider } from "./Context/SearchResultContext";
+import LoginPage from "./components/LoginPage";
 
 const initialQuery = {
   city: '',
@@ -44,7 +45,8 @@ function App() {
                 element={<DisplayOneTrip />}
               />
 
-              <Route path="/authentication" element={<Authentication />} />
+              <Route path="/signup" element={<SignupPage />} />
+              <Route path="/login" element={<LoginPage />} />
             </Route>
           </Routes>
         </div>
