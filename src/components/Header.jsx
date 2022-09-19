@@ -6,7 +6,7 @@ import { useContext } from "react";                     // <== IMPORT
 import { AuthContext } from "../Context/AuthContext";
 
 const Header = () => {
-  const { isLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 
   return (
     <header className="flex flex-row justify-between bg-white px-16">
@@ -23,7 +23,7 @@ const Header = () => {
               <p>About</p>
             </Link>
           </li>
-          {!isLoggedIn ? (
+          {isLoggedIn ? (
             <>
               <li className="mx-4">
                 <Link className="hover:text-green-pine">
@@ -32,7 +32,8 @@ const Header = () => {
               </li>
               <li className="mx-4">
                 <Link className="hover:text-green-pine">
-                  <button>Log out</button>
+                  <button onClick={logOutUser}>Logout</button>
+                  <span>{user && user.name}</span>
                 </Link>
               </li>
             </>
@@ -44,7 +45,7 @@ const Header = () => {
             </li>
           }
         </ul>
-        {!isLoggedIn && (
+        {isLoggedIn && (
           <Link>
             <img src={profilePic} alt="ProfilePicture" className="ml-8" />
           </Link>
