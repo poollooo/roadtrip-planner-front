@@ -12,6 +12,8 @@ import { useState } from "react";
 import QueryContext from "./Context/QueryContext";
 import { SearchContextProvider } from "./Context/SearchResultContext";
 import LoginPage from "./components/LoginPage";
+import IsPrivate from "./components/isPrivate";
+import IsAnon from "./components/isAnonymous";
 
 const initialQuery = {
   city: '',
@@ -37,16 +39,34 @@ function App() {
               <Route path="/:city" element={<SearchResult />} />
               <Route path="/:city/new-trip" element={<CreateTrip />} />
 
-              <Route path="/users/:username" element={<UserProfile />} />
-              <Route path="/users/:username/trips" element={<DisplayCards />} />
+              <Route path="/users/:username" element={
+                <IsPrivate>
+                  <UserProfile />
+                </IsPrivate>} />
+
+              <Route path="/users/:username/trips" element={
+                <IsPrivate>
+                  <DisplayCards />
+                </IsPrivate>} />
 
               <Route
                 path="/users/:username/trips/:tripId"
-                element={<DisplayOneTrip />}
+                element={
+                  <IsPrivate>
+                    <DisplayOneTrip />
+                  </IsPrivate>}
               />
 
-              <Route path="/signup" element={<SignupPage />} />
-              <Route path="/login" element={<LoginPage />} />
+              <Route path="/signup" element={
+                <IsAnon>
+                  <SignupPage />
+                </IsAnon>
+              } />
+              <Route path="/login" element={
+                <IsAnon>
+                  <LoginPage />
+                </IsAnon>
+              } />
             </Route>
           </Routes>
         </div>
