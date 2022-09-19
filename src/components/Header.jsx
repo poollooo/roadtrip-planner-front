@@ -39,7 +39,7 @@ const Header = () => {
             </>
           ) :
             <li className="mx-4">
-              <Link className="hover:text-green-pine">
+              <Link to="/signup" className="hover:text-green-pine">
                 <button>Sign up</button>
               </Link>
             </li>
