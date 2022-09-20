@@ -26,10 +26,10 @@ const SearchResult = () => {
     return <h1>Loading</h1>;
   }
 
-  const restaurantList = searchresult.foundedCity.filter(
+  const restaurantList = searchresult.newActivityList.filter(
     (ele) => ele.category === "restaurant"
   );
-  const attractionList = searchresult.foundedCity.filter(
+  const attractionList = searchresult.newActivityList.filter(
     (ele) => ele.category === "attraction"
   );
 
