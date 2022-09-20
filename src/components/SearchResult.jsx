@@ -52,6 +52,10 @@ const SearchResult = () => {
       </section>
       <SearchCategory searchresult={restaurantList} />
       <SearchCategory searchresult={attractionList} />
+
+      <div>
+        <button className="planning-button"> Planning My Trip </button>
+      </div>
     </div>
   );
 };

@@ -2,7 +2,7 @@ import "./SearchItems.scss";
 
 const SearchItems = ({ item, isHidden }) => {
   if (!item) {
-    return <h1>We are Loading</h1>;
+    return; 
   }
 
   return (
@@ -24,7 +24,7 @@ const SearchItems = ({ item, isHidden }) => {
           <strong>Numbers Of Views :</strong> {item.numberOfReviews}
         </p>
 
-        
+
         <button>Favorite</button>
         <button>Add to My Trip</button>
       </div>

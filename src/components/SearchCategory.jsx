@@ -6,6 +6,8 @@ import SearchItems from "./SearchItems";
 const SearchCategory = ({ searchresult }) => {
   const [searchCategory, setSearchCategory] = useState();
   const [isShowingMore, setIsShowingMore] = useState(false);
+  const [searchInput, setSearchInput] = useState("");
+  console.log(searchCategory);
 
   useEffect(() => {
     setSearchCategory(searchresult);
@@ -16,14 +18,19 @@ const SearchCategory = ({ searchresult }) => {
   }
 
   const itemList = searchCategory.map((ele, i) => {
+    const itemsToFind = ele.name.includes(searchInput) ? ele : null;
     return (
       <SearchItems
         key={ele._id}
-        item={ele}
+        item={itemsToFind}
         isHidden={!isShowingMore && i > 3}
       />
     );
   });
+
+  const searchInputHandler = (e) => {
+    setSearchInput(e.target.value);
+  };
 
   return (
     <>
@@ -37,7 +44,8 @@ const SearchCategory = ({ searchresult }) => {
               <input
                 type="text"
                 name="Search"
-                placeholder="Search"
+                placeholder={`Search by ${searchCategory[0].category} name`}
+                onChange={searchInputHandler}
                 className="search-input"
               />
             </label>
@@ -46,7 +54,12 @@ const SearchCategory = ({ searchresult }) => {
 
         <div className="SearchCategoryList">{itemList}</div>
       </div>
-      <button onClick={() => setIsShowingMore((v) => !v)}>More</button>
+      <button
+        className="SearchCategoryButton"
+        onClick={() => setIsShowingMore((v) => !v)}
+      >
+        More
+      </button>
     </>
   );
 };

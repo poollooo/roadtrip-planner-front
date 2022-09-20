@@ -6,7 +6,6 @@
   flex: 1 0 50%;
   align-items: center;
   justify-content: center;
-  // min-height: 50%;
 
   &.hidden {
     display: none;
@@ -21,6 +20,7 @@
   picture {
     display: block;
     max-width: 13rem;
+    height: 100%;
 
     @media #{$sm} {
       max-width: 20rem;
@@ -32,8 +32,9 @@
       max-width: 25rem;
     }
     img {
-      max-width: 100%;
+      width: 100%;
       height: 100%;
+      object-fit: cover;
     }
   }
 
@@ -44,6 +45,20 @@
     }
     @media #{$md} {
       font-size: 0.9rem;
+    }
+  }
+
+
+  button{
+    width: 5rem;
+    font-size: .6rem;
+    background: #006972;
+    margin: 1rem;
+    color: white;
+    border-radius: 10%;
+    @media #{$sm} {
+    width: 6rem;
+    font-size: .8rem;
     }
   }
 }
