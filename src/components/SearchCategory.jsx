@@ -4,18 +4,10 @@ import "./SearchCategory.scss";
 import SearchItems from "./SearchItems";
 
 const SearchCategory = ({ searchresult }) => {
-  // const [searchCategory, setSearchCategory] = useState();
+
   const [isShowingMore, setIsShowingMore] = useState(false);
   const [searchInput, setSearchInput] = useState("");
-  console.log(searchresult);
 
-  // useEffect(() => {
-  //   setSearchCategory(searchresult);
-  // }, [searchresult]);
-
-  if (!searchresult) {
-    return <h1>Loading</h1>;
-  }
 
   const itemList = searchresult.map((ele, i) => {
     const itemsToFind = ele.name.includes(searchInput) ? ele : null;
