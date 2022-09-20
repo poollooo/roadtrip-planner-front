@@ -4,9 +4,13 @@
 }
 
 .e-text-content {
-  padding: 0;
+  padding: 0 !important;
 }
 
 .e-treeview .e-fullrow {
   height: 3.125rem;
+}
+.e-schedule .e-vertical-view .e-day-wrapper .e-appointment {
+  background: #03666b !important;
+  padding-left: 0.5rem !important;
 }

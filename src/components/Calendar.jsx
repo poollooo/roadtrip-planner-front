@@ -3,6 +3,7 @@ import "./material.css";
 import "./event.css";
 import restIcon from "../images/restaurant-icon.png";
 import actIcon from "../images/activities-icon.png";
+import axios from "axios";
 
 import {
   Inject,
@@ -21,21 +22,23 @@ const Calendar = (props) => {
   const [activitiesList, setList] = useState(props.activitiesList);
 
   const myRef = useRef();
-  const datal = activitiesList.map(
-    ({ activityLocationId, name, category, address, rawRating }) => ({
-      id: activityLocationId,
-      name,
-      category,
-      address,
-      rawRating,
-    })
-  );
+  const myRef2 = useRef();
+  // const datal =
   const onDragStart = (drag) => {
     drag.navigation.enable = true;
     drag.navigation.timeDelay = 1000;
   };
+  const setData = () => {};
   const data = {
-    dataSource: datal,
+    dataSource: activitiesList.map(
+      ({ activityLocationId, name, category, address, rawRating }) => ({
+        id: activityLocationId,
+        name,
+        category,
+        address,
+        rawRating,
+      })
+    ),
     id: "id",
     text: "name",
     category: "category",
@@ -64,7 +67,7 @@ const Calendar = (props) => {
   };
 
   // const popupDetail = (activityData) => {
-  //   console.log(activityData.Subject);
+  //
   //   return (
   //     <div className="custom-event-editor">
   //       <p>Activity name : {activityData.Subject}</p>
@@ -84,17 +87,34 @@ const Calendar = (props) => {
     };
 
     myRef.current.openEditor(newEvent, "Add", true);
+    // setList(
+    //   activitiesList.map(
+    //     (e) => e.activityLocationId !== event.draggedNodeData.activityLocationId
+    //   )
+    // );
+    console.log("Scheduler", myRef2);
   };
 
   //exporting Planning to the database
-  const scheduleValidation = () => {
-    if (myRef.current.eventsData.length === 0) console.log("No data here");
-    const scheduleToDB = myRef.current.eventsData.map((event) => ({
+  const scheduleValidation = async () => {
+    if (myRef.current.eventsData.length === 0) {
+      console.log("No data here");
+      return;
+    }
+
+    //add verification if user is connected. If not, store url and data in the url
+    const newActivityList = myRef.current.eventsData.map((event) => ({
       startDate: event.startTime,
       endDate: event.endTime,
-      tripId: 2222,
-      activityId: event.id,
+      activityLocationId: event.id,
     }));
+
+    await axios
+      .post(
+        "https://roadtrip-planner-ih.herokuapp.com/api/trips/",
+        newActivityList
+      )
+      .then((e) => console.log("yepa"));
   };
 
   return (
@@ -117,6 +137,7 @@ const Calendar = (props) => {
           }}
           ref={myRef}
           dragStart={onDragStart}
+          isResponsive={true}
         >
           <ViewsDirective>
             <ViewDirective
@@ -146,6 +167,7 @@ const Calendar = (props) => {
       <div className="w-2/6 mt-[56px]">
         <p>Activities list </p>
         <TreeViewComponent
+          ref={myRef2}
           fields={data}
           allowDragAndDrop={true}
           nodeDragStop={onDragStop}
