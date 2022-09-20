@@ -1,0 +1,74 @@
+@import "./CommeSass.scss";
+
+.SearchItem {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 50%;
+  align-items: center;
+  justify-content: center;
+
+  &.hidden {
+    display: none;
+  }
+
+  @media #{$md} {
+  }
+  @media #{$lg} {
+    max-width: 50%;
+  }
+
+  picture {
+    display: block;
+    max-width: 13rem;
+    height: 100%;
+
+    @media #{$sm} {
+      max-width: 20rem;
+    }
+    @media #{$md} {
+      max-width: 25rem;
+    }
+    @media #{$lg} {
+      max-width: 25rem;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .Search-item-description {
+    font-size: 0.8rem;
+    @media #{$sm} {
+      font-size: 0.9rem;
+    }
+    @media #{$md} {
+      font-size: 0.9rem;
+    }
+  }
+
+
+  button{
+    width: 5rem;
+    font-size: .6rem;
+    background: #006972;
+    margin: 1rem;
+    color: white;
+    border-radius: 10%;
+    @media #{$sm} {
+    width: 6rem;
+    font-size: .8rem;
+    }
+  }
+}
+
+//  @media #{$sm} {
+
+//     }
+//     @media #{$md} {
+
+//     }
+//     @media #{$lg} {
+
+//     }

@@ -1,0 +1,84 @@
+@import "./CommeSass.scss";
+
+.SearchCategory {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.75rem;
+  margin-top: 3rem;
+  max-width: 80%;
+  @media #{$sm} {
+    font-size: 1rem;
+  }
+  @media #{$md} {
+    font-size: 1rem;
+  }
+
+  .SearchCategory-header {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.5rem;
+    margin-bottom: 2rem;
+    width: 100%;
+
+    @media #{$sm} {
+      padding-bottom: 0.5rem;
+      justify-content: space-between;
+      flex-direction: row;
+      white-space: nowrap;
+      font-size: 0.8rem;
+    }
+    @media #{$md} {
+      justify-content: space-between;
+      font-size: 1rem;
+    }
+    @media #{$lg} {
+      font-size: 1.3rem;
+    }
+    .search-input {
+      width: 5rem;
+      align-self: flex-end;
+      font-size: 0.2rem;
+      border: #006972 1px solid;
+      @media #{$sm} {
+        width: 10rem;
+      font-size: 0.3rem;
+
+      }
+      @media #{$md} {
+        width: 20rem;
+      font-size: 0.5rem;
+
+      }
+    }
+  }
+
+  .SearchCategoryList {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    @media #{$md} {
+      flex-direction: row;
+    }
+  }
+}
+
+.SearchCategoryButton {
+  border: 3px solid #006972;
+  border-radius: 10%;
+  width: 10rem;
+  height: 2rem;
+}
+//  @media #{$sm} {
+
+//     }
+//     @media #{$md} {
+
+//     }
+//     @media #{$lg} {
+
+//     }
