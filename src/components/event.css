@@ -2,3 +2,11 @@
   padding: 0 !important;
   margin: 0 !important;
 }
+
+.e-text-content {
+  padding: 0;
+}
+
+.e-treeview .e-fullrow {
+  height: 3.125rem;
+}

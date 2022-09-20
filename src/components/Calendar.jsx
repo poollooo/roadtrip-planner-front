@@ -18,17 +18,16 @@ import { TreeViewComponent } from "@syncfusion/ej2-react-navigations";
 
 const Calendar = (props) => {
   // const activitiesList = props.activitiesList;
-
-  const [scheduledActivities, setActivities] = useState([]);
   const [activitiesList, setList] = useState(props.activitiesList);
-  console.log(activitiesList);
 
   const myRef = useRef();
   const datal = activitiesList.map(
-    ({ activityLocationId, name, category }) => ({
+    ({ activityLocationId, name, category, address, rawRating }) => ({
       id: activityLocationId,
       name,
       category,
+      address,
+      rawRating,
     })
   );
   const onDragStart = (drag) => {
@@ -40,25 +39,29 @@ const Calendar = (props) => {
     id: "id",
     text: "name",
     category: "category",
+    address: "address",
+    rawRating: "rawRating",
   };
 
+  //defining new display for activties list
   const nodeTemplate = (data) => {
     return (
-      <div className="flex justify-start items-center gap-2 w-full font-medium text-sm">
+      <div className="flex justify-start items-center gap-2 w-full font-medium text-sm h-[3.125rem]">
         <img
           src={data.category === "restaurant" ? restIcon : actIcon}
           alt="temp"
           className="h-8 "
         />
         <p>{data.name}</p>
+        <p className="text-xs italic">{Math.round(data.rawRating)}</p>
       </div>
     );
   };
 
   //redifining the display of activities in the calendar
-  // const templateEvent = (data) => {
-  //   return <div>{data.Subject}</div>;
-  // };
+  const templateEvent = (data) => {
+    return <div>{data.Subject}</div>;
+  };
 
   // const popupDetail = (activityData) => {
   //   console.log(activityData.Subject);
@@ -70,32 +73,43 @@ const Calendar = (props) => {
   //   );
   // };
 
-  //treetemplate to define
-
   //allow to add event do to the scheduler
   const onDragStop = (event) => {
     const cellData = myRef.current.getCellDetails(event.target);
-    console.log(cellData);
     const newEvent = {
       Subject: event.draggedNodeData.text,
       StartTime: cellData.startTime,
       EndTime: cellData.endTime,
       IsAllDay: false,
     };
-    setActivities({
-      startDate: cellData.startTime,
-      enDate: cellData.endTime,
-      tripId: 2222,
-      activityId: event.draggedNodeData.id,
-    });
+
     myRef.current.openEditor(newEvent, "Add", true);
-    //myRef.current.addEvent(newEvent, true);
   };
-  console.log(myRef);
+
+  //exporting Planning to the database
+  const scheduleValidation = () => {
+    if (myRef.current.eventsData.length === 0) console.log("No data here");
+    const scheduleToDB = myRef.current.eventsData.map((event) => ({
+      startDate: event.startTime,
+      endDate: event.endTime,
+      tripId: 2222,
+      activityId: event.id,
+    }));
+  };
+
   return (
     <>
       <div className="w-4/6">
+        <div className="flex justify-end">
+          <button
+            className="bg-[#03666b] p-2 m-2 border-r text-white"
+            onClick={scheduleValidation}
+          >
+            Save My Trip
+          </button>
+        </div>
         <ScheduleComponent
+          id="Schedule1"
           workHours={{
             highlight: true,
             start: "7:00",
@@ -129,7 +143,7 @@ const Calendar = (props) => {
           <Inject services={[Day, DragAndDrop, Resize]} />
         </ScheduleComponent>
       </div>
-      <div className="w-2/6">
+      <div className="w-2/6 mt-[56px]">
         <p>Activities list </p>
         <TreeViewComponent
           fields={data}
