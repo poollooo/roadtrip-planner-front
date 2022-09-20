@@ -4,20 +4,20 @@ import "./SearchCategory.scss";
 import SearchItems from "./SearchItems";
 
 const SearchCategory = ({ searchresult }) => {
-  const [searchCategory, setSearchCategory] = useState();
+  // const [searchCategory, setSearchCategory] = useState();
   const [isShowingMore, setIsShowingMore] = useState(false);
   const [searchInput, setSearchInput] = useState("");
+  console.log(searchresult);
 
+  // useEffect(() => {
+  //   setSearchCategory(searchresult);
+  // }, [searchresult]);
 
-  useEffect(() => {
-    setSearchCategory(searchresult);
-  }, [searchresult]);
-
-  if (!searchCategory) {
+  if (!searchresult) {
     return <h1>Loading</h1>;
   }
 
-  const itemList = searchCategory.map((ele, i) => {
+  const itemList = searchresult.map((ele, i) => {
     const itemsToFind = ele.name.includes(searchInput) ? ele : null;
     return (
       <SearchItems
@@ -37,14 +37,14 @@ const SearchCategory = ({ searchresult }) => {
       <div className="SearchCategory">
         <div className="SearchCategory-header">
           <h1>
-            <strong>Look for a {searchCategory[0].category}</strong>
+            <strong>Look for a {searchresult[0]?.category}</strong>
           </h1>
           <form>
             <label>
               <input
                 type="text"
                 name="Search"
-                placeholder={`Search by ${searchCategory[0].category} name`}
+                placeholder={`Search by ${searchresult[0]?.category} name`}
                 onChange={searchInputHandler}
                 className="search-input"
               />

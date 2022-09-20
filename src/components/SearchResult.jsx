@@ -20,7 +20,7 @@ const SearchResult = () => {
       .catch(function (error) {
         console.error(error);
       });
-  }, [city]);
+  }, []);
 
   if (!searchresult) {
     return <h1>Loading</h1>;

@@ -21,7 +21,7 @@ const initialQuery = {
 function App() {
   const [selectedExperience, setSelectedExperience] = useState([]);
    const [searchQuery, setSearchQuery] = useState(initialQuery);
-  console.log(selectedExperience);
+
   return (
     <QueryContext.Provider value={{ searchQuery, setSearchQuery }}>
       <BrowserRouter>

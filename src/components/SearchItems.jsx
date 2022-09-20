@@ -7,14 +7,14 @@ const SearchItems = ({ item, isHidden }) => {
     useContext(SearchContext);
   const [cancelSelected, setCancelSelected] = useState(false);
 
-  if (!item) {
+  if (!item || !Object.keys(item).length) {
     return;
   }
 
   return (
     <div id={item._id} className={`SearchItem ${isHidden && "hidden"}`}>
       <picture>
-        <img src={item.photo[0]} alt={`${item.category} View`} />
+        <img src={item.photo} alt={`${item.category} View`} />
       </picture>
 
       <div className="Search-item-description">
@@ -23,7 +23,7 @@ const SearchItems = ({ item, isHidden }) => {
         </h3>
 
         <p>
-          <strong>Rating :</strong> {item.rawRating.toFixed(1)} 🌟
+          <strong>Rating :</strong> {Number(item.rawRating).toFixed(1)} 🌟
         </p>
         <p>
           <strong>Numbers Of Views :</strong> {item.numberOfReviews}
