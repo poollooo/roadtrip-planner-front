@@ -48,7 +48,7 @@ const SearchItems = ({ item, isHidden }) => {
             setCancelSelected(!cancelSelected);
           }}
         >
-          {!cancelSelected ? "Add to My Trip" : "Cancel"}
+          {!cancelSelected ? "Add to My Trip" : "Remove From My List"}
         </button>
       </div>
     </div>
