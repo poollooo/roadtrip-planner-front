@@ -42,6 +42,7 @@ const SearchItems = ({ item, isHidden }) => {
             } else {
               setSelectedExperience((prevState) => {
                 const keepExp = prevState.filter((ele) => ele._id !== item._id);
+
                 return [...keepExp];
               });
             }

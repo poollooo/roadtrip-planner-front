@@ -1,9 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import "./material.css";
 import "./event.css";
 import restIcon from "../images/restaurant-icon.png";
 import actIcon from "../images/activities-icon.png";
 import axios from "axios";
+import { SearchContext } from "../Context/SearchResultContext";
 
 import {
   Inject,
@@ -17,20 +18,20 @@ import {
 
 import { TreeViewComponent } from "@syncfusion/ej2-react-navigations";
 
-const Calendar = (props) => {
+const Calendar = () => {
   // const activitiesList = props.activitiesList;
-  const [activitiesList, setList] = useState(props.activitiesList);
-
+  const { selectedExperience, setSelectedExperience } =
+    useContext(SearchContext);
   const myRef = useRef();
-  const myRef2 = useRef();
   // const datal =
   const onDragStart = (drag) => {
     drag.navigation.enable = true;
     drag.navigation.timeDelay = 1000;
   };
-  const setData = () => {};
+
+  console.log(selectedExperience);
   const data = {
-    dataSource: activitiesList.map(
+    dataSource: selectedExperience.map(
       ({ activityLocationId, name, category, address, rawRating }) => ({
         id: activityLocationId,
         name,
@@ -92,7 +93,14 @@ const Calendar = (props) => {
     //     (e) => e.activityLocationId !== event.draggedNodeData.activityLocationId
     //   )
     // );
-    console.log("Scheduler", myRef2);
+    setSelectedExperience((prevState) => {
+      const keepExp = prevState.filter((ele) => {
+        console.log("ele", ele.activityLocationId);
+        console.log("item", event.draggedNodeData.id);
+        return ele.activityLocationId !== Number(event.draggedNodeData.id);
+      });
+      return [...keepExp];
+    });
   };
 
   //exporting Planning to the database
@@ -129,7 +137,6 @@ const Calendar = (props) => {
           </button>
         </div>
         <ScheduleComponent
-          id="Schedule1"
           workHours={{
             highlight: true,
             start: "7:00",
@@ -167,7 +174,6 @@ const Calendar = (props) => {
       <div className="w-2/6 mt-[56px]">
         <p>Activities list </p>
         <TreeViewComponent
-          ref={myRef2}
           fields={data}
           allowDragAndDrop={true}
           nodeDragStop={onDragStop}

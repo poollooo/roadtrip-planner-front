@@ -10,8 +10,8 @@
     "@mui/material": "^5.10.5",
     "@mui/x-date-pickers": "^5.0.1",
     "@mui/x-date-pickers-pro": "^5.0.1",
-    "@syncfusion/ej2-react-navigations": "^20.2.49",
-    "@syncfusion/ej2-react-schedule": "^20.2.45",
+    "@syncfusion/ej2-react-navigations": "^20.2.50",
+    "@syncfusion/ej2-react-schedule": "^20.2.50",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -33,6 +33,7 @@
     "react-router-dom": "^6.4.0",
     "react-scripts": "5.0.1",
     "sass": "^1.54.9",
+    "sass-loader": "^13.0.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
