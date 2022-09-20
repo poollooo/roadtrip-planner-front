@@ -8,7 +8,6 @@ const SearchCategory = ({ searchresult }) => {
   const [isShowingMore, setIsShowingMore] = useState(false);
   const [searchInput, setSearchInput] = useState("");
 
-
   const itemList = searchresult.map((ele, i) => {
     const itemsToFind = ele.name.includes(searchInput) ? ele : null;
     return (
@@ -43,7 +42,6 @@ const SearchCategory = ({ searchresult }) => {
             </label>
           </form>
         </div>
-
         <div className="SearchCategoryList">{itemList}</div>
       </div>
       <button
