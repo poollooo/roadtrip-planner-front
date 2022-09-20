@@ -21,26 +21,23 @@ function SignupPage(props) {
     const handleEmail = (e) => setEmail(e.target.value);
     const handleUsername = (e) => setUsername(e.target.value);
     const handlePassword = (e) => setPassword(e.target.value);
-    console.log(email, username, password);
-
 
     const handleSignupSubmit = (e) => {
         e.preventDefault();
         // Create an object representing the request body
         const requestBody = { email, username, password };
-        console.log(requestBody);
 
         // Make an axios request to the API
         // If POST request is successful redirect to main page
         // If the request resolves with an error, set the error message in the state
         axios.post(`${API_URL}/auth/signup`, requestBody)
-            .then((response) => {
+            .then(async (response) => {
                 // Store the JWT token in the browser's localStorage
-                console.log(response)
-                storeToken(response.data);
+                storeToken(response.data.token);
+
                 // Verify the token by sending a request 
                 // to the server's JWT validation endpoint.
-                authenticateUser();
+                await authenticateUser();
                 navigate('/');
             })
             .catch((error) => {

@@ -30,7 +30,8 @@ function LoginPage(props) {
                 console.log('The user JWT token is :', response.data);
 
                 // Store the JWT token in the browser's localStorage
-                storeToken(response.data);
+
+                storeToken(response.data.token);
                 // Verify the token by sending a request 
                 // to the server's JWT validation endpoint.
                 authenticateUser();

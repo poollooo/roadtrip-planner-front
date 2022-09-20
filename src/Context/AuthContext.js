@@ -25,8 +25,9 @@ function AuthProviderWrapper(props) {
                 { headers: { Authorization: `Bearer ${storedToken}` } }
             )
                 .then((response) => {
-                    // If the server verifies that JWT token is valid  
-                    const user = response.data;
+                    // If the server verifies that JWT token is valid
+                    const user = response.statusText;
+
                     // Update state variables        
                     setIsLoggedIn(true);
                     setIsLoading(false);
