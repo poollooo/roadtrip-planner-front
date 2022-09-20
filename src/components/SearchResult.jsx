@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import SearchCategory from "./SearchCategory";
 import "./SearchResult.scss";
@@ -54,7 +54,9 @@ const SearchResult = () => {
       <SearchCategory searchresult={attractionList} />
 
       <div>
-        <button className="planning-button"> Planning My Trip </button>
+        <Link to={`/${city}/new-trip`}>
+          <button className="planning-button"> Planning My Trip </button>
+        </Link>
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ const SearchCategory = ({ searchresult }) => {
   const [searchCategory, setSearchCategory] = useState();
   const [isShowingMore, setIsShowingMore] = useState(false);
   const [searchInput, setSearchInput] = useState("");
-  console.log(searchCategory);
+
 
   useEffect(() => {
     setSearchCategory(searchresult);

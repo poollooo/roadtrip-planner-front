@@ -10,6 +10,7 @@ import Authentication from "./components/Authentication";
 import Layout from "./components/Layout";
 import { useState } from "react";
 import QueryContext from "./Context/QueryContext";
+import { SearchContextProvider } from "./Context/SearchResultContext";
 
 const initialQuery = {
   city: '',
@@ -18,12 +19,14 @@ const initialQuery = {
 }
 
 function App() {
-  const [searchQuery, setSearchQuery] = useState(initialQuery);
-
+  const [selectedExperience, setSelectedExperience] = useState([]);
+  console.log(selectedExperience);
   return (
-    //wrap the whole app in the queryContext
     <QueryContext.Provider value={{ searchQuery, setSearchQuery }}>
       <BrowserRouter>
+      <SearchContextProvider
+        value={{ selectedExperience, setSelectedExperience }}
+      >
         <div className="App">
           <Routes>
             <Route element={<Layout />}>
@@ -44,6 +47,7 @@ function App() {
             </Route>
           </Routes>
         </div>
+      </SearchContextProvider>
       </BrowserRouter>
     </QueryContext.Provider>
   );
