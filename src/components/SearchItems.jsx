@@ -1,17 +1,18 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { SearchContext } from "../Context/SearchResultContext";
 import "./SearchItems.scss";
 
 const SearchItems = ({ item, isHidden }) => {
   const { selectedExperience, setSelectedExperience } =
     useContext(SearchContext);
+  const [cancelSelected, setCancelSelected] = useState(false);
 
   if (!item) {
     return;
   }
 
   return (
-    <div className={`SearchItem ${isHidden && "hidden"}`}>
+    <div id={item._id} className={`SearchItem ${isHidden && "hidden"}`}>
       <picture>
         <img src={item.photo[0]} alt={`${item.category} View`} />
       </picture>
@@ -29,13 +30,25 @@ const SearchItems = ({ item, isHidden }) => {
         </p>
 
         <button
-          onClick={(event) => {
-            setSelectedExperience((prevState) => {
-              return [...prevState, event.target.closest(".SearchItem")];
-            });
+          onClick={() => {
+            if (!cancelSelected) {
+              setSelectedExperience((prevState) => {
+                const foundExp = prevState.find((ele) => ele._id === item._id);
+                if (foundExp) {
+                  return prevState;
+                }
+                return [...prevState, item];
+              });
+            } else {
+              setSelectedExperience((prevState) => {
+                const keepExp = prevState.filter((ele) => ele._id !== item._id);
+                return [...keepExp];
+              });
+            }
+            setCancelSelected(!cancelSelected);
           }}
         >
-          Add to My Trip
+          {!cancelSelected ? "Add to My Trip" : "Cancel"}
         </button>
       </div>
     </div>
