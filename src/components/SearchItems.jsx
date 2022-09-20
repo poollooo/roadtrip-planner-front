@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { SearchContext } from "../Context/SearchResultContext";
 import "./SearchItems.scss";
 
-const SearchItems = ({ item, isHidden }) => {
+const SearchItems = ({ item, isHidden, setCurrentActivity }) => {
   const { selectedExperience, setSelectedExperience } =
     useContext(SearchContext);
   const [cancelSelected, setCancelSelected] = useState(false);
@@ -13,7 +13,7 @@ const SearchItems = ({ item, isHidden }) => {
 
   return (
     <div id={item._id} className={`SearchItem ${isHidden && "hidden"}`}>
-      <picture>
+      <picture onClick={() => {setCurrentActivity(item)}}>
         <img src={item.photo} alt={`${item.category} View`} />
       </picture>
 

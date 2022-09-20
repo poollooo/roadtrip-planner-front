@@ -1,0 +1,20 @@
+.pop-up-container{
+  background: grey;
+  width: 90vw;
+  height: 70vh;
+  color: white;
+  position: fixed;
+  display: flex;
+  
+
+  picture{
+    width: 1rem;
+    height: 1rem;
+
+
+    img{
+      width: 40%;
+      object-fit: cover;
+    }
+  }
+}

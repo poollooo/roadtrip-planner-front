@@ -3,8 +3,7 @@ import "./SearchCategory.scss";
 
 import SearchItems from "./SearchItems";
 
-const SearchCategory = ({ searchresult }) => {
-
+const SearchCategory = ({ searchresult, setCurrentActivity }) => {
   const [isShowingMore, setIsShowingMore] = useState(false);
   const [searchInput, setSearchInput] = useState("");
 
@@ -12,6 +11,7 @@ const SearchCategory = ({ searchresult }) => {
     const itemsToFind = ele.name.includes(searchInput) ? ele : null;
     return (
       <SearchItems
+        setCurrentActivity={setCurrentActivity}
         key={ele._id}
         item={itemsToFind}
         isHidden={!isShowingMore && i > 3}

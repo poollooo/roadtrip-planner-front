@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import SearchCategory from "./SearchCategory";
 import "./SearchResult.scss";
 import PlaneLoading from "./PlaneLoading";
 import { ORIGIN } from "../utils/const"
+import QueryContext from "../Context/QueryContext";
+import SearchItemPopUp from './SearchItemPopUp'
 
 const SearchResult = () => {
   const { city } = useParams();
   const [searchresult, setSearchResult] = useState();
+  const { searchQuery } = useContext(QueryContext);
+  const [currentActivity, setCurrentActivity] = useState(null); //show choosed item detail 
 
   useEffect(() => {
     const config = {
@@ -22,7 +26,7 @@ const SearchResult = () => {
       .catch(function (error) {
         console.error(error);
       });
-  }, []);
+  }, [city]);
 
   if (!searchresult) {
     return (
@@ -37,12 +41,40 @@ const SearchResult = () => {
     (ele) => ele.category === "attraction"
   );
 
+  const tripDuration = (searchQuery) => {
+    let day = searchQuery.endDate.date - searchQuery.startDate.date;
+    let month = searchQuery.endDate.month - searchQuery.startDate.month;
+    let year = searchQuery.endDate.year - searchQuery.startDate.year;
+    year = year !== 0 ? `${year} Year` : "";
+    month = month !== 0 ? `${month} month` : "";
+    day = day > 1 ? `${day} days` : `${day} day`;
+    return `${year}  ${month}  ${day} `;
+  };
+  const monthOfYear = [
+    "Jan",
+    "Fev",
+    "Mars",
+    "April",
+    "May",
+    "Jun",
+    "Jul",
+    "Agu",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
   return (
     <div className="Search-result-container">
       <h1 className="Search-header">
-        How to spend 5 days <br /> in {city}
+        How to spend {tripDuration(searchQuery)} <br /> in {city}
       </h1>
-      <p className="Search-date">Sep 14 , 2002 - Sep 18 , 2022</p>
+      <p className="Search-date">{`${
+        monthOfYear[searchQuery.startDate.month - 1]
+      } ${searchQuery.startDate.date} - ${
+        monthOfYear[searchQuery.endDate.month - 1]
+      } ${searchQuery.endDate.date}`}</p>
       <section className="City-intro">
         <h2>
           <strong>{city}</strong>
@@ -54,14 +86,26 @@ const SearchResult = () => {
           soluta!
         </p>
       </section>
-      <SearchCategory searchresult={restaurantList} />
-      <SearchCategory searchresult={attractionList} />
+      <SearchCategory
+        searchresult={restaurantList}
+        setCurrentActivity={setCurrentActivity}
+      />
+      <SearchCategory
+        searchresult={attractionList}
+        setCurrentActivity={setCurrentActivity}
+      />
 
       <div>
         <Link to={`/${city}/new-trip`}>
           <button className="planning-button"> Planning My Trip </button>
         </Link>
       </div>
+      {currentActivity && (
+        <SearchItemPopUp
+          setcurrentactivity={setCurrentActivity}
+          currentactivity={currentActivity}
+        />
+      )}
     </div>
   );
 };
