@@ -21,9 +21,7 @@ const HomePage = () => {
       </div>
       <div className="flex flex-col align-center items-center gap-20 pb-16">
         {isLoggedIn &&
-          <div className="flex flex-col gap-10 bg-offwhite-100 w-[80vw] p-14 rounded-2xl shadow-lg">
-            <DisplayCards trip={true} headerContent={"My trips"} />
-          </div>
+          <DisplayCards trip={true} headerContent={"My trips"} />
         }
         <div className="flex flex-col gap-3 justify-center items-center">
           <p className="text-xl font-bold">
@@ -34,12 +32,10 @@ const HomePage = () => {
             searches.
           </p>
         </div>
-        <div className="flex flex-col gap-10 w-[80vw] shadow-lg p-14 bg-offwhite-100 rounded-2xl">
-          <DisplayCards
-            trip={false}
-            headerContent={"Popular cities"}
-          />
-        </div>
+        <DisplayCards
+          trip={false}
+          headerContent={"Popular cities"}
+        />
       </div>
     </>
   );
