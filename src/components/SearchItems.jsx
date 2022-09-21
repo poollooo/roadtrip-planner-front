@@ -55,10 +55,10 @@ const SearchItems = ({ item, isHidden, setCurrentActivity }) => {
         </h3>
 
         <p>
-          <strong>Rating :</strong> {Number(item.rawRating).toFixed(1)} 🌟
+          Rating : {Number(item.rawRating).toFixed(1)} 🌟
         </p>
         <p>
-          <strong>Numbers Of Views :</strong> {item.numberOfReviews}
+          Numbers Of Views : {item.numberOfReviews}
         </p>
       </div>
     </div>

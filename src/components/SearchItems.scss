@@ -3,7 +3,7 @@
 .SearchItem {
   display: flex;
   flex-direction: column;
-  flex: 1 0 50%;
+  flex: 1 1 50%;
   align-items: center;
   justify-content: center;
   position: relative;
@@ -48,12 +48,18 @@
     justify-content: center;
     align-items: flex-start;
     font-size: 0.8rem;
-    text-align: left;
+    text-align: center;
     @media #{$sm} {
       font-size: 0.9rem;
     }
     @media #{$md} {
       font-size: 0.9rem;
+    }
+
+    h3{
+      font-size: 1rem;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
   }
 }
