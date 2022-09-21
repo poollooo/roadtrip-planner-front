@@ -5,7 +5,7 @@ const Card = ({ title, desc, image }) => {
   return (
     <div className="flex flex-col gap-1 w-80">
       {/* images */}
-      <div className="">
+      <div>
         <img
           src={image}
           className="h-64 lg:h-72 object-cover w-full rounded-xl shadow-lg shadow-gray-400/40 "
