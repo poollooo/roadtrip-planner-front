@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../images/Logo.svg";
 import { Link } from "react-router-dom";
 import profilePic from "../images/ProfilePicture.svg";
@@ -7,6 +7,7 @@ import { AuthContext } from "../Context/AuthContext";
 
 const Header = () => {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+  const storedUsername = localStorage.getItem("user");
 
   return (
     <header className="flex flex-row justify-between bg-white ">
@@ -51,7 +52,7 @@ const Header = () => {
           }
         </ul>
         {isLoggedIn && (
-          <Link>
+          <Link to={`/users/${storedUsername}`} >
             <img src={profilePic} alt="ProfilePicture" className="ml-8" />
           </Link>
         )}
