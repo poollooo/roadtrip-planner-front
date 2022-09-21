@@ -9,10 +9,14 @@ const Header = () => {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 
   return (
-    <header className="flex flex-row justify-between bg-white px-16">
-      <img src={logo} alt="Road-Trip-Planner" className="w-40 h-auto my-8 mx-8" />
-      <nav className="flex flex-row justify-between items-center">
-        <ul className="flex flex-row justify-between">
+    <header className="flex flex-row justify-between bg-white ">
+      <img
+        src={logo}
+        alt="Road-Trip-Planner"
+        className="w-1/5 sm:w-1/6 h-auto my-8 mx-8"
+      />
+      <nav className="flex justify-between items-center text-center ">
+        <ul className="flex justify-between text-xs sm:text-sm md:text-md whitespace-nowrap ">
           <li className="mx-4">
             <Link className="hover:text-green-pine">
               <p>Home</p>
