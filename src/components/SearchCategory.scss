@@ -7,7 +7,7 @@
   margin-top: 3rem;
   min-width: 80%;
   max-width: 80%;
-  min-height:max-content;
+  min-height: max-content;
   @media #{$sm} {
     font-size: 1rem;
   }
@@ -44,15 +44,16 @@
       font-size: 0.7rem;
       border: #006972 1px solid;
       text-align: center;
-      border-radius: 5%;
+      border-radius: 10px;
       outline: none;
+      font-size: .5rem;
       @media #{$sm} {
         width: 100%;
         font-size: 1rem;
       }
       @media #{$md} {
-        width:100%;
-        font-size: .9rem;
+        width: 100%;
+        font-size: 0.9rem;
       }
     }
   }
@@ -62,7 +63,6 @@
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: space-evenly;
-
     @media #{$md} {
       flex-direction: row;
     }
@@ -70,11 +70,11 @@
 }
 
 .SearchCategoryButton {
-  border: 3px solid #006972;
+  // border: 3px solid #006972;
   border-radius: 20px;
   width: 10rem;
   height: 2.5rem;
   color: white;
-  background: #006972;
-  padding:.1rem
+  background-image: linear-gradient(to bottom, #3b7aa3, #8daec1);
+  padding: 0.1rem;
 }

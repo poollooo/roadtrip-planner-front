@@ -99,6 +99,7 @@ const SearchResult = () => {
         <Link to={`/${city}/new-trip`}>
           <button className="planning-button"> Planning My Trip </button>
         </Link>
+        
       </div>
       {currentActivity && (
         <SearchItemPopUp

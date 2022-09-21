@@ -38,7 +38,7 @@ const SearchCategory = ({ searchresult, setCurrentActivity }) => {
               <input
                 type="text"
                 name="Search"
-                placeholder={`Search by ${searchresult[0]?.category} name`}
+                placeholder={`Search by ${searchresult[0]?.category}`}
                 onChange={searchInputHandler}
                 className="search-input"
               />

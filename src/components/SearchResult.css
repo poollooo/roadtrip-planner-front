@@ -1,0 +1,93 @@
+.Search-result-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  gap: 1rem;
+}
+.Search-result-container .Search-header {
+  font-size: 2rem;
+}
+@media screen and (min-width: 640px) {
+  .Search-result-container .Search-header {
+    font-size: 3rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .Search-result-container .Search-header {
+    font-size: 4rem;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .Search-result-container .Search-header {
+    font-size: 5rem;
+  }
+}
+.Search-result-container .Search-date {
+  font-size: 0.7rem;
+}
+@media screen and (min-width: 640px) {
+  .Search-result-container .Search-date {
+    font-size: 1rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .Search-result-container .Search-date {
+    font-size: 1.5rem;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .Search-result-container .Search-date {
+    font-size: 2rem;
+  }
+}
+.Search-result-container .City-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  box-shadow: 10px 5px 5px 5px #ececed;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  max-width: 80%;
+}
+@media screen and (min-width: 640px) {
+  .Search-result-container .City-intro {
+    font-size: 1.2rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .Search-result-container .City-intro {
+    font-size: 1.3rem;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .Search-result-container .City-intro {
+    padding: 1.5rem 1.5rem;
+    margin-bottom: 3rem;
+  }
+}
+.Search-result-container .City-description {
+  align-self: center;
+  font-size: 0.5rem;
+}
+@media screen and (min-width: 640px) {
+  .Search-result-container .City-description {
+    font-size: 0.8rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .Search-result-container .City-description {
+    font-size: 0.8rem;
+  }
+}
+.Search-result-container .planning-button {
+  margin: 5rem;
+  width: 40vw;
+  height: 2rem;
+  border: 2px #006972 solid;
+  background-image: linear-gradient(to bottom left, #006972, white);
+  color: white;
+  border-radius: 10px;
+  font-weight: 800;
+}/*# sourceMappingURL=SearchResult.css.map */

@@ -21,7 +21,7 @@
     }
   }
   .Search-date {
-    font-size: .7rem;
+    font-size: 0.7rem;
     @media #{$sm} {
       font-size: 1rem;
     }
@@ -38,50 +38,40 @@
     align-items: flex-start;
     text-align: left;
     box-shadow: 10px 5px 5px 5px #ececed;
-    padding: .75rem 1rem;
+    padding: 0.75rem 1rem;
     font-size: 1rem;
-    max-width:80%; 
+    max-width: 80%;
 
     @media #{$sm} {
-    font-size: 1.2rem;
+      font-size: 1.2rem;
     }
     @media #{$md} {
-    font-size: 1.3rem;
+      font-size: 1.3rem;
     }
     @media #{$lg} {
-    padding: 1.5rem 1.5rem;
-    margin-bottom: 3rem;
+      padding: 1.5rem 1.5rem;
+      margin-bottom: 3rem;
     }
   }
   .City-description {
     align-self: center;
-    font-size: .5rem;
+    font-size: 0.5rem;
     @media #{$sm} {
-    font-size: .8rem;
+      font-size: 0.8rem;
     }
     @media #{$md} {
-    font-size: .8rem;
+      font-size: 0.8rem;
     }
   }
 
-  .planning-button{
+  .planning-button {
     margin: 5rem;
-    width: 20rem;
-    border:1px black solid; 
-    background: black;
+    width: 40vw;
+    height: 2rem;
+    border: 2px #006972 solid;
+    background-image: linear-gradient(to bottom left, #006972, white);
     color: white;
+    border-radius: 10px;
+    font-weight: 800;
   }
 }
-
-
-
-//  @media #{$sm} {
-
-//     }
-//     @media #{$md} {
-
-//     }
-//     @media #{$lg} {
-
-//     }
-
