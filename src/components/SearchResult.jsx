@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import SearchCategory from "./SearchCategory";
 import "./SearchResult.scss";
+import PlaneLoading from "./PlaneLoading";
 
 const SearchResult = () => {
   const { city } = useParams();
@@ -23,7 +24,9 @@ const SearchResult = () => {
   }, []);
 
   if (!searchresult) {
-    return <h1>Loading</h1>;
+    return (
+      <PlaneLoading text={"Finding the coolest things to do"} />
+    )
   }
 
   const restaurantList = searchresult.newActivityList.filter(
