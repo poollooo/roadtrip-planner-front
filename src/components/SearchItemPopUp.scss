@@ -1,18 +1,29 @@
-.pop-up-container{
+.pop-up-container {
+  border: 2px black solid;
   background: grey;
-  width: 90vw;
-  height: 70vh;
+  width: 80%vw;
+  max-height: 80%vh;
+  min-height: 80%vh;
   color: white;
   position: fixed;
   display: flex;
-  
+  flex-direction: column;
 
-  picture{
-    width: 1rem;
-    height: 1rem;
+  .pop-up-description {
+    position: relative;
+    .close-detail {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+    }
+  }
 
+  picture {
+    width: 50%;
+    // height: 10rem;
+    display: block;
 
-    img{
+    img {
       width: 40%;
       object-fit: cover;
     }

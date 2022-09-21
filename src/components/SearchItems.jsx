@@ -1,6 +1,9 @@
 import { useContext, useState } from "react";
 import { SearchContext } from "../Context/SearchResultContext";
 import "./SearchItems.scss";
+import addSvg from '../images/choose.svg'
+import addedSvg from '../images/choosed.svg'
+
 
 const SearchItems = ({ item, isHidden, setCurrentActivity }) => {
   const { selectedExperience, setSelectedExperience } =
@@ -13,23 +16,18 @@ const SearchItems = ({ item, isHidden, setCurrentActivity }) => {
 
   return (
     <div id={item._id} className={`SearchItem ${isHidden && "hidden"}`}>
-      <picture onClick={() => {setCurrentActivity(item)}}>
-        <img src={item.photo} alt={`${item.category} View`} />
-      </picture>
-
-      <div className="Search-item-description">
-        <h3>
-          <strong>{item.name}</strong>
-        </h3>
-
-        <p>
-          <strong>Rating :</strong> {Number(item.rawRating).toFixed(1)} 🌟
-        </p>
-        <p>
-          <strong>Numbers Of Views :</strong> {item.numberOfReviews}
-        </p>
-
-        <button
+      <picture>
+        <img
+          onClick={() => {
+            setCurrentActivity(item);
+          }}
+          src={item.photo}
+          alt={`${item.category} View`}
+        />
+        <img
+          src={!cancelSelected ? addSvg : addedSvg}
+          alt="add-experience"
+          className="icon-add"
           onClick={() => {
             if (!cancelSelected) {
               setSelectedExperience((prevState) => {
@@ -48,9 +46,20 @@ const SearchItems = ({ item, isHidden, setCurrentActivity }) => {
             }
             setCancelSelected(!cancelSelected);
           }}
-        >
-          {!cancelSelected ? "Add to My Trip" : "Remove From My List"}
-        </button>
+        />
+      </picture>
+
+      <div className="Search-item-description">
+        <h3>
+          <strong>{item.name}</strong>
+        </h3>
+
+        <p>
+          <strong>Rating :</strong> {Number(item.rawRating).toFixed(1)} 🌟
+        </p>
+        <p>
+          <strong>Numbers Of Views :</strong> {item.numberOfReviews}
+        </p>
       </div>
     </div>
   );

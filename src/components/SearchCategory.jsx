@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./SearchCategory.scss";
 
 import SearchItems from "./SearchItems";
@@ -7,17 +7,20 @@ const SearchCategory = ({ searchresult, setCurrentActivity }) => {
   const [isShowingMore, setIsShowingMore] = useState(false);
   const [searchInput, setSearchInput] = useState("");
 
-  const itemList = searchresult.map((ele, i) => {
-    const itemsToFind = ele.name.includes(searchInput) ? ele : null;
+  const itemList = searchresult.map((ele,i) => {
+    const itemsToFind = ele.name.includes(searchInput) ? ele : '';
     return (
       <SearchItems
         setCurrentActivity={setCurrentActivity}
         key={ele._id}
         item={itemsToFind}
-        isHidden={!isShowingMore && i > 3}
+        isHidden={!isShowingMore && i > 5}
       />
     );
   });
+  if (itemList.length<=5) {
+   setIsShowingMore(false)
+ }
 
   const searchInputHandler = (e) => {
     setSearchInput(e.target.value);
@@ -44,12 +47,14 @@ const SearchCategory = ({ searchresult, setCurrentActivity }) => {
         </div>
         <div className="SearchCategoryList">{itemList}</div>
       </div>
-      <button
-        className="SearchCategoryButton"
-        onClick={() => setIsShowingMore((v) => !v)}
-      >
-        More
-      </button>
+      {itemList.length <= 5 ? null : (
+        <button
+          className="SearchCategoryButton"
+          onClick={() => setIsShowingMore((v) => !v)}
+        >
+          {!isShowingMore? 'More':'Less'}
+        </button>
+      )}
     </>
   );
 };
