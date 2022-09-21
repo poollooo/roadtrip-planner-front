@@ -31,7 +31,7 @@ const DisplayOneTrip = () => {
 
   return (
     <>
-      <div>
+      <div className="flex justify-center">
         <Calendar tripData={tripData} readOnly={true} focus={true}></Calendar>
       </div>
     </>
