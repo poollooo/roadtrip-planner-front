@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import HeroImage from "../images/Hero-Image.svg";
 import SearchBar from "./SearchBar";
 import DisplayCards from "./DisplayCards";
+import { AuthContext } from "../Context/AuthContext";
 
 const HomePage = () => {
+  const { isLoggedIn } = useContext(AuthContext);
 
   return (
     <>
@@ -18,9 +20,11 @@ const HomePage = () => {
         </div>
       </div>
       <div className="flex flex-col align-center items-center gap-20 pb-16">
-        <div className="flex flex-col gap-10 bg-offwhite-100 w-[80vw] p-14 rounded-2xl shadow-lg">
-          <DisplayCards trip={true} headerContent={"My trips"}></DisplayCards>
-        </div>
+        {isLoggedIn &&
+          <div className="flex flex-col gap-10 bg-offwhite-100 w-[80vw] p-14 rounded-2xl shadow-lg">
+            <DisplayCards trip={true} headerContent={"My trips"} />
+          </div>
+        }
         <div className="flex flex-col gap-3 justify-center items-center">
           <p className="text-xl font-bold">
             A life without journeys is one not lived at all
@@ -34,7 +38,7 @@ const HomePage = () => {
           <DisplayCards
             trip={false}
             headerContent={"Popular cities"}
-          ></DisplayCards>
+          />
         </div>
       </div>
     </>
