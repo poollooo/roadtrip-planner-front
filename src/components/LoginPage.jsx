@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
 
-const API_URL = process.env.ORIGIN_PROD || "http://localhost:3003/api";
+const API_URL = "http://localhost:3003/api"
 console.log(process.env.ORIGIN_PROD);
 
 function LoginPage(props) {

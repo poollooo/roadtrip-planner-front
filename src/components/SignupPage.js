@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
 
-const API_URL = process.env.ORIGIN_PROD || "http://localhost:3003/api";
+const API_URL = "http://localhost:3003/api"
 
 
 function SignupPage(props) {
@@ -42,8 +42,7 @@ function SignupPage(props) {
                 navigate('/');
             })
             .catch((error) => {
-                const errorDescription = error.response.data;
-                setErrorMessage(errorDescription);
+                console.log(error)
             })
     };
 
@@ -91,7 +90,6 @@ function SignupPage(props) {
                     </p>
                 </button>
             </form>
-            {errorMessage && <p className="error-message">{errorMessage}</p>}
             <div className="flex flex-row gap-2 pt-4 pb-8">
                 <p className="text-md">Already have an account?</p>
                 <Link className="hover:text-green-pine text-md" to={"/login"}> Login</Link>

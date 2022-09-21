@@ -9,7 +9,7 @@ const DisplayCards = ({ headerContent, trip }) => {
   console.log(cities)
 
   useEffect(() => {
-    axios.get("https://roadtrip-planner-ih.herokuapp.com/api/cities")
+    axios.get("http://localhost:3003/api/cities")
       .then((response) => {
         // If the server verifies that JWT token is valid
         setCities(response.data.allCities)

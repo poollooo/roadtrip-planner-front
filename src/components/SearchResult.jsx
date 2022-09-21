@@ -12,7 +12,7 @@ const SearchResult = () => {
   useEffect(() => {
     const config = {
       method: "get",
-      url: `https://roadtrip-planner-ih.herokuapp.com/api/search/${city}`,
+      url: `http://localhost:3003/api/search/${city}`,
     };
     axios(config)
       .then(function (response) {
