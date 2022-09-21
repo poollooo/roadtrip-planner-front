@@ -33,6 +33,7 @@ function SignupPage(props) {
         axios.post(`${API_URL}/auth/signup`, requestBody)
             .then(async (response) => {
                 // Store the JWT token in the browser's localStorage
+                localStorage.setItem("user", requestBody.username);
                 storeToken(response.data.token);
 
                 // Verify the token by sending a request 
