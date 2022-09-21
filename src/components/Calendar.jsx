@@ -5,6 +5,7 @@ import restIcon from "../images/restaurant-icon.png";
 import actIcon from "../images/activities-icon.png";
 import axios from "axios";
 import { SearchContext } from "../Context/SearchResultContext";
+import { QueryContext } from "../Context/QueryContext";
 
 import {
   Inject,
@@ -22,6 +23,8 @@ const Calendar = () => {
   // const activitiesList = props.activitiesList;
   const { selectedExperience, setSelectedExperience } =
     useContext(SearchContext);
+
+  const { searchQuery, setSearchQuery } = useContext(QueryContext);
   const myRef = useRef();
   // const datal =
   const onDragStart = (drag) => {
@@ -29,7 +32,6 @@ const Calendar = () => {
     drag.navigation.timeDelay = 1000;
   };
 
-  console.log(selectedExperience);
   const data = {
     dataSource: selectedExperience.map(
       ({ activityLocationId, name, category, address, rawRating }) => ({
@@ -77,6 +79,10 @@ const Calendar = () => {
   //   );
   // };
 
+  // const setLocationId = () =>{
+  //   const
+  //   return
+  // }
   //allow to add event do to the scheduler
   const onDragStop = (event) => {
     const cellData = myRef.current.getCellDetails(event.target);
@@ -84,6 +90,7 @@ const Calendar = () => {
       Subject: event.draggedNodeData.text,
       StartTime: cellData.startTime,
       EndTime: cellData.endTime,
+      Description: event.draggedNodeData.id,
       IsAllDay: false,
     };
 
@@ -95,8 +102,6 @@ const Calendar = () => {
     // );
     setSelectedExperience((prevState) => {
       const keepExp = prevState.filter((ele) => {
-        console.log("ele", ele.activityLocationId);
-        console.log("item", event.draggedNodeData.id);
         return ele.activityLocationId !== Number(event.draggedNodeData.id);
       });
       return [...keepExp];
@@ -104,25 +109,45 @@ const Calendar = () => {
   };
 
   //exporting Planning to the database
-  const scheduleValidation = async () => {
+  const scheduleValidation = () => {
     if (myRef.current.eventsData.length === 0) {
       console.log("No data here");
       return;
     }
 
     //add verification if user is connected. If not, store url and data in the url
-    const newActivityList = myRef.current.eventsData.map((event) => ({
-      startDate: event.startTime,
-      endDate: event.endTime,
-      activityLocationId: event.id,
-    }));
-
-    await axios
-      .post(
-        "https://roadtrip-planner-ih.herokuapp.com/api/trips/",
-        newActivityList
-      )
-      .then((e) => console.log("yepa"));
+    console.log("eventsData", myRef.current.eventsData);
+    const newActivityList = myRef.current.eventsData.map((event) => {
+      return {
+        cityLocationId: "298564",
+        startDate: event.StartTime,
+        endDate: event.EndTime,
+        activityLocationId: Number(event.Description),
+        name: event.Subject,
+      };
+    });
+    console.log(newActivityList);
+    const token = localStorage.getItem("authToken");
+    const config = {
+      method: "post",
+      url: "http://localhost:3003/api/trips/",
+      headers: { Authorization: `Bearer ${token}` },
+      data: {
+        newActivityList,
+        startDate: newActivityList[0].startDate,
+        endDate: newActivityList[0].endDate,
+        name: "Tirrr",
+        cityId: 263974,
+      },
+    };
+    console.log(config);
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   return (
