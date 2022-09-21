@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
 
-const API_URL = "http://localhost:3003/api";
+const API_URL = process.env.ORIGIN_PROD || "http://localhost:3003";
 
 
 function SignupPage(props) {
