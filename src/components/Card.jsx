@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import iconLoc from "../images/localisation-icon.png";
 
-const Card = ({ title, desc, image }) => {
+const Card = ({ title, desc, image, city }) => {
   return (
     <div className="flex flex-col gap-1 w-80">
       {/* images */}
@@ -18,7 +19,18 @@ const Card = ({ title, desc, image }) => {
         {/* TRIP info */}
         <div>
           <p className="font-bold ">{title}</p>
-          <p className="italic text-xs">{desc}</p>
+          <p className="italic text-xs">{desc}
+            {city &&
+              <span className="ml-2 font-medium hover:text-green-pine">
+
+                <Link
+                  to={city}
+                  onClick={() => window.scrollTo(0, 0)}
+                >
+                  Read more</Link>
+              </span>
+            }
+          </p>
         </div>
       </div>
     </div>
