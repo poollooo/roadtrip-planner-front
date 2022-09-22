@@ -7,7 +7,7 @@ const SearchCategory = ({ searchresult, setCurrentActivity }) => {
   const [isShowingMore, setIsShowingMore] = useState(false);
   const [searchInput, setSearchInput] = useState("");
 
-  const itemList = searchresult.map((ele,i) => {
+  const itemList = searchresult.map((ele, i) => {
     const itemsToFind = ele.name.includes(searchInput) ? ele : '';
     return (
       <SearchItems
@@ -18,9 +18,9 @@ const SearchCategory = ({ searchresult, setCurrentActivity }) => {
       />
     );
   });
-  if (itemList.length<=5) {
-   setIsShowingMore(false)
- }
+  if (itemList.length <= 5) {
+    setIsShowingMore(false)
+  }
 
   const searchInputHandler = (e) => {
     setSearchInput(e.target.value);
@@ -29,7 +29,7 @@ const SearchCategory = ({ searchresult, setCurrentActivity }) => {
   return (
     <>
       <div className="SearchCategory">
-        <div className="SearchCategory-header">
+        <div className="SearchCategory-header px-4">
           <h1>
             <strong>Look for a {searchresult[0]?.category}</strong>
           </h1>
@@ -40,19 +40,19 @@ const SearchCategory = ({ searchresult, setCurrentActivity }) => {
                 name="Search"
                 placeholder={`Search by ${searchresult[0]?.category}`}
                 onChange={searchInputHandler}
-                className="search-input"
+                className="border-2 pl-4 border-gray-200 hover:border-green-pine text-green-pine text-md bg-white px-2 outline-none rounded-full"
               />
             </label>
           </form>
         </div>
-        <div className="SearchCategoryList">{itemList}</div>
+        <div className="SearchCategoryList rounded-lg">{itemList}</div>
       </div>
       {itemList.length <= 5 ? null : (
         <button
-          className="SearchCategoryButton"
+          className="text-gray-500"
           onClick={() => setIsShowingMore((v) => !v)}
         >
-          {!isShowingMore? 'More':'Less'}
+          {!isShowingMore ? 'See more' : 'Less'}
         </button>
       )}
     </>
