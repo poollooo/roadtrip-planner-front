@@ -5,7 +5,7 @@ import dots from "../lotties/dots.json";
 
 const PlaneLoading = ({ text }) => {
     return (
-        <div className="flex flex-col items-center m-auto w-[30%] pt-8 pb-48" >
+        <div className="flex flex-col items-center m-auto w-[40%] pt-8 pb-48" >
             <div className="w-[20vw]">
                 <Lottie
                     animationData={loadingLottie}
@@ -15,7 +15,7 @@ const PlaneLoading = ({ text }) => {
                     autoplay
                 />
             </div>
-            <div className="flex text-2xl w-96 flex-nowrap">{text}
+            <div className="flex text-2xl w-max flex-nowrap">{text}
                 <div className="mt-1 w-8">
                     <Lottie
                         animationData={dots}
