@@ -56,13 +56,27 @@ const DisplayCity = () => {
   );
 
   const tripDuration = (searchQuery) => {
-    let day = searchQuery.startDate.date - searchQuery.endDate.date;
+    let day = searchQuery.endDate.date - searchQuery.startDate.date;
     let month = searchQuery.endDate.month - searchQuery.startDate.month;
     let year = searchQuery.endDate.year - searchQuery.startDate.year;
-    year = year !== 0 ? `${year} Year` : "";
-    month = month !== 0 ? `${month} month` : "";
+    if (day < 0) {
+      day = day * -1;
+    }
+    if (month < 0) {
+      month = month * -1;
+    }
+    if (year) {
+      year = year > 1 ? ` ${year} Years and` : `${year} Year and`
+    } else if (!year) {
+      year = ''
+    }
+    if (month) {
+      month = month > 1 ? `${month} months and` : `${month} month and`
+    } else if (!month) {
+      month = ''
+    }
     day = day > 1 ? `${day} days` : `${day} day`;
-    return `${year}  ${month} and  ${day} `;
+    return ` ${year} ${month}  ${day} `;
   };
 
   const monthOfYear = [
