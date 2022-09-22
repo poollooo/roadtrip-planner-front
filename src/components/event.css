@@ -8,9 +8,13 @@
 }
 
 .e-treeview .e-fullrow {
-  height: 3.125rem;
+  height: 6rem;
 }
 .e-schedule .e-vertical-view .e-day-wrapper .e-appointment {
   background: #03666b !important;
   padding-left: 0.5rem !important;
+}
+
+.e-quick-popup-wrapper .e-event-popup .e-popup-header {
+  background: #03666b !important;
 }

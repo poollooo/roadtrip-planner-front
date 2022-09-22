@@ -5,7 +5,7 @@ import restIcon from "../images/restaurant-icon.png";
 import actIcon from "../images/activities-icon.png";
 import axios from "axios";
 import { SearchContext } from "../Context/SearchResultContext";
-import { ORIGIN } from "../utils/const"
+import { ORIGIN } from "../utils/const";
 
 import {
   Inject,
@@ -20,12 +20,11 @@ import {
 import { TreeViewComponent } from "@syncfusion/ej2-react-navigations";
 import { useNavigate } from "react-router-dom";
 
-const Calendar = ({ tripData, readOnly, focus }) => {
+const Calendar = ({ tripData, readOnly, focus, startDate }) => {
   const { selectedExperience } = useContext(SearchContext);
   const [schedulerEventData, setSchedulerEventData] =
     useState(selectedExperience);
   const myRef = useRef();
-  let data2 = "";
   const navigate = useNavigate();
   const onDragStart = (drag) => {
     drag.navigation.enable = true;
@@ -37,12 +36,13 @@ const Calendar = ({ tripData, readOnly, focus }) => {
 
   const data = {
     dataSource: schedulerEventData.map(
-      ({ activityLocationId, name, category, address, rawRating }) => ({
+      ({ activityLocationId, name, category, address, rawRating, photo }) => ({
         id: activityLocationId,
         name,
         category,
         address,
         rawRating,
+        photo,
       })
     ),
     id: "id",
@@ -50,56 +50,41 @@ const Calendar = ({ tripData, readOnly, focus }) => {
     category: "category",
     address: "address",
     rawRating: "rawRating",
+    img: "photo",
   };
-  if (readOnly) {
-    const data2 = {
-      dataSource: tripData.map((activity, index) => ({
-        Id: index,
-        Subject: activity.activityId.name,
-        StartTime: activity.startDate,
-        EndTime: activity.endDate,
-      })),
-    };
-  }
+
   //defining new display for activties list
   const nodeTemplate = (data) => {
     return (
-      <div className="flex justify-start items-center gap-2 w-full font-medium text-sm h-[3.125rem]">
+      <div
+        data-name={data.name}
+        data-address={data.address}
+        className="flex justify-start items-center gap-2 w-full  text-sm h-[6rem]"
+      >
         <img
-          src={data.category === "restaurant" ? restIcon : actIcon}
+          src={data.photo[0]}
           alt="temp"
-          className="h-8 "
+          className="h-full w-[175px] object-cover rounded-lg"
         />
-        <p>{data.name}</p>
-        <p className="text-xs italic">{Math.round(data.rawRating)}</p>
+        <div className="flex flex-col content-between">
+          <p className="font-medium text-lg">{data.name}</p>
+
+          <span className="">{data.address}</span>
+          <span>
+            <img
+              src={data.category === "restaurant" ? restIcon : actIcon}
+              alt="icon"
+              className="h-6 minw-6 inline "
+            />
+          </span>
+        </div>
       </div>
     );
   };
 
-  //redifining the display of activities in the calendar
-  // const templateEvent = (data) => {
-  //   return <div>{data.Subject}</div>;
-  // };
-
-  // const popupDetail = (activityData) => {
-  //
-  //   return (
-  //     <div className="custom-event-editor">
-  //       <p>Activity name : {activityData.Subject}</p>
-  //       <p>Location :</p>
-  //     </div>
-  //   );
-  // };
-
-  // const setLocationId = () =>{
-  //   const
-  //   return
-  // }
-
   //allow to add event to the scheduler
   const onDragStop = (event) => {
     const cellData = myRef.current.getCellDetails(event.target);
-
     const newEvent = {
       Subject: event.draggedNodeData.text,
       StartTime: cellData.startTime,
@@ -109,11 +94,6 @@ const Calendar = ({ tripData, readOnly, focus }) => {
     };
 
     myRef.current.openEditor(newEvent, "Add", true);
-    // setList(
-    //   activitiesList.map(
-    //     (e) => e.activityLocationId !== event.draggedNodeData.activityLocationId
-    //   )
-    // );
 
     setSchedulerEventData((prevState) => {
       const keepExp = prevState.filter((ele) => {
@@ -125,6 +105,7 @@ const Calendar = ({ tripData, readOnly, focus }) => {
 
   //exporting Planning to the database
   const scheduleValidation = () => {
+    console.log("myref", myRef.current.eventsData);
     if (myRef.current.eventsData.length === 0) {
       window.alert("Please add activities to your trip before saving");
       return;
@@ -133,9 +114,9 @@ const Calendar = ({ tripData, readOnly, focus }) => {
     //add verification if user is connected. If not, store url and data in the url
     const newActivityList = myRef.current.eventsData.map((event) => {
       return {
+        activityLocationId: event.Description,
         startDate: event.StartTime,
         endDate: event.EndTime,
-        activityLocationId: Number(event.Description),
         name: event.Subject,
       };
     });
@@ -150,7 +131,7 @@ const Calendar = ({ tripData, readOnly, focus }) => {
         cityLocationId: selectedExperience[0].cityLocationId,
         startDate: newActivityList[0].startDate,
         endDate: newActivityList[0].endDate,
-        name: "Tirrr",
+        name: "TirrTrr",
       },
     };
 
@@ -159,7 +140,7 @@ const Calendar = ({ tripData, readOnly, focus }) => {
         const trip = response.data.tripCreated._id;
         const tripLink =
           "/users/" + localStorage.getItem("user") + "/trips/" + trip;
-        console.log("move");
+        console.log("req resp", response.data);
         navigate(tripLink);
       })
       .catch(function (error) {
@@ -169,7 +150,29 @@ const Calendar = ({ tripData, readOnly, focus }) => {
 
   return (
     <>
-      <div className="w-4/6">
+      {!readOnly && (
+        <div className="w-2/5 mt-[56px]">
+          <p>Activities list </p>
+          {data && (
+            <TreeViewComponent
+              fields={data}
+              allowDragAndDrop={true}
+              nodeDragStop={onDragStop}
+              nodeTemplate={nodeTemplate}
+            />
+          )}
+          {schedulerEventData.length < 1 && (
+            <div className="italic text-gray-500 flex flex-col justify-center gap-2">
+              {" "}
+              <p>No more activities to add</p>
+              <button className="bg-[#03666b]  border-r text-white">
+                Add more activities
+              </button>
+            </div>
+          )}
+        </div>
+      )}
+      <div className="w-[800px]">
         <div className="flex justify-end">
           <button
             className="bg-[#03666b] p-2 m-2 border-r text-white"
@@ -179,15 +182,18 @@ const Calendar = ({ tripData, readOnly, focus }) => {
           </button>
         </div>
         <ScheduleComponent
+          height={800}
           workHours={{
             highlight: true,
             start: "7:00",
             end: "23:00",
           }}
           ref={myRef}
+          selectedDate={startDate}
           dragStart={onDragStart}
           isResponsive={true}
-          eventSettings={data2}
+          eventSettings={tripData}
+          readonly={readOnly}
         >
           <ViewsDirective>
             <ViewDirective
@@ -215,28 +221,6 @@ const Calendar = ({ tripData, readOnly, focus }) => {
           <Inject services={[Day, DragAndDrop, Resize]} />
         </ScheduleComponent>
       </div>
-      {!readOnly && (
-        <div className="w-2/6 mt-[56px]">
-          <p>Activities list </p>
-          {data && (
-            <TreeViewComponent
-              fields={data}
-              allowDragAndDrop={true}
-              nodeDragStop={onDragStop}
-              nodeTemplate={nodeTemplate}
-            />
-          )}
-          {schedulerEventData.length < 1 && (
-            <div className="italic text-gray-500 flex flex-col justify-center gap-2">
-              {" "}
-              <p>No more activities to add</p>
-              <button className="bg-[#03666b] p-2 m-2 border-r text-white">
-                Add more activities
-              </button>
-            </div>
-          )}
-        </div>
-      )}
     </>
   );
 };

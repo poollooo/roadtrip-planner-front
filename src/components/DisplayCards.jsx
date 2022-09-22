@@ -1,25 +1,22 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import Card from "./Card";
-import { ORIGIN } from "../utils/const"
+import { ORIGIN } from "../utils/const";
 
 const DisplayCards = ({ headerContent, trip }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
   const [cities, setCities] = useState();
-  console.log(cities)
-  console.log('ORIGIN IS :', ORIGIN)
 
   useEffect(() => {
-    axios.get(`${ORIGIN}/cities`)
+    axios
+      .get(`${ORIGIN}/cities`)
       .then((response) => {
         // If the server verifies that JWT token is valid
-        setCities(response.data.allCities)
+        setCities(response.data.allCities);
       })
       .catch((error) => {
-        // If the server sends an error response (invalid token) 
-        // Update state variables         
-        console.log(error)
+        // If the server sends an error response (invalid token)
+        // Update state variables
+        console.log(error);
       });
   }, []);
 
