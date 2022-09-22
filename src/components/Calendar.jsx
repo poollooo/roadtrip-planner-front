@@ -176,15 +176,11 @@ const Calendar = ({ tripData, readOnly, focus, startDate }) => {
       }
       <div className="w-[800px]">
         <div className="flex justify-end mb-4">
-          <button
-            onClick={readOnly ? scheduleValidation : scheduleValidation}
-          >
-            {readOnly ?
-              <ButtonComponent text={"Edit your Trip"} width={"10vw"} />
-              :
-              <ButtonComponent text={"Save your trip"} width={"10vw"} />
-            }
-          </button>
+          {readOnly ?
+            <ButtonComponent text={"Edit your Trip"} width={"10vw"} />
+            :
+            <ButtonComponent text={"Save your trip"} width={"10vw"} />
+          }
         </div>
         <ScheduleComponent
           height={800}
