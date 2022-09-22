@@ -116,7 +116,9 @@ const SearchResult = () => {
 
       <div className="pt-4 pb-12">
         <Link to={`/${city}/new-trip`}>
-          <ButtonComponent text={"Create a new trip"} width={"w-[20vw]"} />
+          <ButtonComponent text={"Create a new trip"} width={"w-[20vw]"}
+            onClick={() => window.scrollTo(0, 0)}
+          />
         </Link>
 
       </div>
