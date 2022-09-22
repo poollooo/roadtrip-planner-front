@@ -29,7 +29,7 @@ const DisplayOneTrip = () => {
       .catch(function (error) {
         console.log(error);
       });
-  }, [param]);
+  }, []);
 
   if (tripData === "") {
     return <LoadingPlane />;
