@@ -56,13 +56,13 @@ const DisplayCity = () => {
   );
 
   const tripDuration = (searchQuery) => {
-    let day = searchQuery.endDate.date - searchQuery.startDate.date;
+    let day = searchQuery.startDate.date - searchQuery.endDate.date;
     let month = searchQuery.endDate.month - searchQuery.startDate.month;
     let year = searchQuery.endDate.year - searchQuery.startDate.year;
     year = year !== 0 ? `${year} Year` : "";
     month = month !== 0 ? `${month} month` : "";
     day = day > 1 ? `${day} days` : `${day} day`;
-    return `${year}  ${month}  ${day} `;
+    return `${year}  ${month} and  ${day} `;
   };
 
   const monthOfYear = [
@@ -89,10 +89,14 @@ const DisplayCity = () => {
       {!isTripDurationNaN &&
         <>
           <h1 className="Search-header leading-tight w-full">
-            How to spend {tripDuration(searchQuery)} in {city.charAt(0).toUpperCase() + city.slice(1)}
+            How to spend
+            <span className="italic">
+              {tripDuration(searchQuery)}
+            </span>
+            in {city.charAt(0).toUpperCase() + city.slice(1)}
           </h1>
           <p className="Search-date">{`${monthOfYear[searchQuery.startDate.month - 1]
-            } ${searchQuery.startDate.date} - ${monthOfYear[searchQuery.endDate.month - 1]
+            } ${searchQuery.startDate.date} -  ${monthOfYear[searchQuery.endDate.month - 1]
             } ${searchQuery.endDate.date}`}
           </p>
         </>
