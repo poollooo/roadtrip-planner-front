@@ -54,16 +54,17 @@ const Calendar = ({ tripData, readOnly, focus, startDate, endDate }) => {
     rawRating: "rawRating",
     img: "photo",
   };
-  console.log(data);
+
   if (readOnly) {
     const data2 = {
       dataSource: tripData.map((activity, index) => ({
-        Id: index,
+        Id: index + 1,
         Subject: activity.activityId.name,
         StartTime: activity.startDate,
         EndTime: activity.endDate,
       })),
     };
+    console.log("data2", data2);
   }
   //defining new display for activties list
   const nodeTemplate = (data) => {
@@ -76,6 +77,7 @@ const Calendar = ({ tripData, readOnly, focus, startDate, endDate }) => {
         />
         <div className="flex flex-col content-between">
           <p className="font-medium text-lg">{data.name}</p>
+
           <span className="">{data.address}</span>
           <span>
             <img
@@ -92,12 +94,12 @@ const Calendar = ({ tripData, readOnly, focus, startDate, endDate }) => {
   //allow to add event to the scheduler
   const onDragStop = (event) => {
     const cellData = myRef.current.getCellDetails(event.target);
-    console.log(event.draggedNodeData);
+    console.log(event.target);
     const newEvent = {
       Subject: event.draggedNodeData.text,
       StartTime: cellData.startTime,
       EndTime: cellData.endTime,
-      Location: event.draggedNodeData.address,
+      Description: event.draggedNodeData.id,
       IsAllDay: false,
     };
 
@@ -121,12 +123,13 @@ const Calendar = ({ tripData, readOnly, focus, startDate, endDate }) => {
     //add verification if user is connected. If not, store url and data in the url
     const newActivityList = myRef.current.eventsData.map((event) => {
       return {
+        activityLocationId: event.Description,
         startDate: event.StartTime,
         endDate: event.EndTime,
-        name: event.text,
+        name: event.Subject,
       };
     });
-
+    console.log(newActivityList);
     const token = localStorage.getItem("authToken");
     const config = {
       method: "post",
@@ -137,16 +140,16 @@ const Calendar = ({ tripData, readOnly, focus, startDate, endDate }) => {
         cityLocationId: selectedExperience[0].cityLocationId,
         startDate: newActivityList[0].startDate,
         endDate: newActivityList[0].endDate,
-        name: "Tirrr",
+        name: "TirrTrr",
       },
     };
 
     axios(config)
       .then(function (response) {
-        console.log("here");
         const trip = response.data.tripCreated._id;
         const tripLink =
           "/users/" + localStorage.getItem("user") + "/trips/" + trip;
+        console.log(response.data);
         navigate(tripLink);
       })
       .catch(function (error) {

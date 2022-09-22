@@ -8,7 +8,7 @@ import { ORIGIN } from "../utils/const"
 
 const DisplayOneTrip = () => {
   const [tripData, setTripData] = useState("");
-  const param = useParams().tripId;
+  const { tripId } = useParams();
 
   useEffect(() => {
     const token = localStorage.getItem("authToken");
