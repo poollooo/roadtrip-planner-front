@@ -24,11 +24,6 @@ const Header = () => {
               <p>Home</p>
             </Link>
           </li>
-          <li className="mx-4">
-            <Link className="hover:text-green-pine">
-              <p>About</p>
-            </Link>
-          </li>
           {isLoggedIn ? (
             <>
               <li className="mx-4">
