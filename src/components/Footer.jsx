@@ -54,10 +54,10 @@ const Footer = () => {
             <input
               type="text"
               name="email"
-              className="bg-gray-100 align-middle h-4 text-xs md:h-8 lg:h-10 "
+              className="bg-gray-100 align-middle h-4 text-xs md:h-8 lg:h-10 rounded-tl-lg rounded-bl-lg pl-2"
               placeholder="Email"
             />
-            <button className="px-1 align-middle text-xs h-4 md:h-8 lg:h-10 bg-[#07232c] text-white">
+            <button className="px-1 align-middle text-xs h-4 md:h-8 lg:h-10 bg-[#07232c] text-white rounded-tr-lg rounded-br-lg">
               Subscribe
             </button>
           </form>
