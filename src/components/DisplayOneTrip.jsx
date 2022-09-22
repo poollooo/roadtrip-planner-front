@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Calendar from "./Calendar";
+import { ORIGIN } from "../utils/const"
 
 const DisplayOneTrip = () => {
   const [tripData, setTripData] = useState("");
@@ -14,7 +15,7 @@ const DisplayOneTrip = () => {
 
     const config = {
       method: "get",
-      url: "http://localhost:3003/api/trips/" + param,
+      url: `${ORIGIN}/trips/` + param,
       headers: {
         Authorization: `Bearer ${token}`,
       },

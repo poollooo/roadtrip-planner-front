@@ -4,8 +4,9 @@ import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
+import { ORIGIN } from "../utils/const"
 
-const API_URL = "http://localhost:3003/api"
+const API_URL = `${ORIGIN}`
 
 
 function SignupPage(props) {

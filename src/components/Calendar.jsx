@@ -5,6 +5,7 @@ import restIcon from "../images/restaurant-icon.png";
 import actIcon from "../images/activities-icon.png";
 import axios from "axios";
 import { SearchContext } from "../Context/SearchResultContext";
+import { ORIGIN } from "../utils/const"
 
 import {
   Inject,
@@ -142,7 +143,7 @@ const Calendar = ({ tripData, readOnly, focus }) => {
     const token = localStorage.getItem("authToken");
     const config = {
       method: "post",
-      url: "http://localhost:3003/api/trips/",
+      url: `${ORIGIN}/trips/`,
       headers: { Authorization: `Bearer ${token}` },
       data: {
         newActivityList,

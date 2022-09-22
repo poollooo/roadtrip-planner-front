@@ -4,6 +4,7 @@ import axios from "axios";
 import SearchCategory from "./SearchCategory";
 import "./SearchResult.scss";
 import PlaneLoading from "./PlaneLoading";
+import { ORIGIN } from "../utils/const"
 
 const SearchResult = () => {
   const { city } = useParams();
@@ -12,7 +13,7 @@ const SearchResult = () => {
   useEffect(() => {
     const config = {
       method: "get",
-      url: `http://localhost:3003/api/search/${city}`,
+      url: `${ORIGIN}/search/${city}`,
     };
     axios(config)
       .then(function (response) {
