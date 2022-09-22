@@ -3,11 +3,10 @@ import { SearchContext } from "../Context/SearchResultContext";
 import "./SearchItems.scss";
 import addSvg from '../images/choose.svg'
 import addedSvg from '../images/choosed.svg'
-import ButtonComponent from "./ButtonComponent";
 
 
 const SearchItems = ({ item, isHidden, setCurrentActivity }) => {
-  const { selectedExperience, setSelectedExperience } =
+  const { setSelectedExperience } =
     useContext(SearchContext);
   const [cancelSelected, setCancelSelected] = useState(false);
 
