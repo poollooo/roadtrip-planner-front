@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./Pages/HomePage";
 import DisplayCity from "./components/DisplayCity/DisplayCity";
 import CreateTrip from "./Pages/CreateTrip";
-import UserProfile from "./components/UserProfile";
+import UserProfile from "./Pages/UserProfile";
 import DisplayCards from "./components/DisplayCards";
 import DisplayOneTrip from "./Pages/DisplayOneTrip";
 import SignupPage from "./Pages/SignupPage";
