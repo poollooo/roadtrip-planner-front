@@ -1,0 +1,43 @@
+.pop-up-container {
+  background: white;
+  width: 85vw;
+  max-height: 80vh;
+  overflow: scroll;
+  color: white;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  border-radius: 10px;
+}
+.pop-up-container .pop-up-about {
+  color: black;
+  text-align: left;
+  padding: 2rem 2rem 0 2rem;
+  font-size: 5rem;
+  border-bottom: 1px black solid;
+}
+.pop-up-container .pop-up-header {
+  display: flex;
+  padding: 2rem;
+  justify-content: center;
+  align-items: flex-start;
+}
+.pop-up-container .pop-up-header picture {
+  width: 50%;
+  height: 100%;
+}
+.pop-up-container .pop-up-header picture img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  width: 100%;
+  height: 100%;
+}
+.pop-up-container .pop-up-header .pop-up-description {
+  color: black;
+  max-width: 50%;
+  text-align: left;
+  padding: 0 2rem 2rem 2rem;
+}/*# sourceMappingURL=SearchItemPopUp.css.map */

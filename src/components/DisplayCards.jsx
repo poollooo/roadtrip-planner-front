@@ -23,7 +23,6 @@ const DisplayCards = ({ headerContent, trip }) => {
       });
   }, []);
 
-
   return (
     <div className="flex flex-col w-[80vw] shadow-lg p-14 bg-offwhite-100 rounded-2xl">
       <div className="flex flex-col gap-5">
@@ -41,6 +40,7 @@ const DisplayCards = ({ headerContent, trip }) => {
                 title={city.name.charAt(0).toUpperCase() + city.name.slice(1)}
                 desc="Sept 2022 05 - Sept 2022 07"
                 image={city.image}
+                key={city._id}
               />
             );
           })}

@@ -9,7 +9,7 @@ const HomePage = () => {
 
   return (
     <>
-      <div className="flex flex-row justify-center pb-16">
+      <div className="flex flex-row justify-center pb-16 mt-[-5vh]">
         <div className="items-center relative">
           <div>
             <img src={HeroImage} alt="logo" className="w-[80vw]" />

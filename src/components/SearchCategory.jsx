@@ -1,23 +1,26 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./SearchCategory.scss";
 
 import SearchItems from "./SearchItems";
 
-const SearchCategory = ({ searchresult }) => {
-
+const SearchCategory = ({ searchresult, setCurrentActivity }) => {
   const [isShowingMore, setIsShowingMore] = useState(false);
   const [searchInput, setSearchInput] = useState("");
 
   const itemList = searchresult.map((ele, i) => {
-    const itemsToFind = ele.name.includes(searchInput) ? ele : null;
+    const itemsToFind = ele.name.includes(searchInput) ? ele : '';
     return (
       <SearchItems
+        setCurrentActivity={setCurrentActivity}
         key={ele._id}
         item={itemsToFind}
-        isHidden={!isShowingMore && i > 3}
+        isHidden={!isShowingMore && i > 5}
       />
     );
   });
+  if (itemList.length <= 5) {
+    setIsShowingMore(false)
+  }
 
   const searchInputHandler = (e) => {
     setSearchInput(e.target.value);
@@ -26,7 +29,7 @@ const SearchCategory = ({ searchresult }) => {
   return (
     <>
       <div className="SearchCategory">
-        <div className="SearchCategory-header">
+        <div className="SearchCategory-header px-4">
           <h1>
             <strong>Look for a {searchresult[0]?.category}</strong>
           </h1>
@@ -35,21 +38,23 @@ const SearchCategory = ({ searchresult }) => {
               <input
                 type="text"
                 name="Search"
-                placeholder={`Search by ${searchresult[0]?.category} name`}
+                placeholder={`Search by ${searchresult[0]?.category}`}
                 onChange={searchInputHandler}
-                className="search-input"
+                className="border-2 pl-4 border-gray-200 hover:border-green-pine text-green-pine text-md bg-white px-2 outline-none rounded-full"
               />
             </label>
           </form>
         </div>
-        <div className="SearchCategoryList">{itemList}</div>
+        <div className="SearchCategoryList rounded-lg">{itemList}</div>
       </div>
-      <button
-        className="SearchCategoryButton"
-        onClick={() => setIsShowingMore((v) => !v)}
-      >
-        More
-      </button>
+      {itemList.length <= 5 ? null : (
+        <button
+          className="text-gray-500"
+          onClick={() => setIsShowingMore((v) => !v)}
+        >
+          {!isShowingMore ? 'See more' : 'Less'}
+        </button>
+      )}
     </>
   );
 };

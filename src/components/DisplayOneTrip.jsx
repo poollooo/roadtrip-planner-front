@@ -28,7 +28,7 @@ const DisplayOneTrip = () => {
       .catch(function (error) {
         console.log(error);
       });
-  }, []);
+  }, [param]);
 
   return (
     <>

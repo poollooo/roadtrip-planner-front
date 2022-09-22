@@ -13,7 +13,6 @@ function SignupPage(props) {
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [errorMessage, setErrorMessage] = useState(undefined);
 
     const { storeToken, authenticateUser } = useContext(AuthContext);
 

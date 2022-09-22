@@ -1,0 +1,62 @@
+.SearchItem {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 50%;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+}
+.SearchItem.hidden {
+  display: none;
+}
+@media screen and (min-width: 1024px) {
+  .SearchItem {
+    max-width: 33%;
+  }
+}
+.SearchItem picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+@media screen and (min-width: 1024px) {
+  .SearchItem picture {
+    max-height: 18rem;
+  }
+}
+.SearchItem picture img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+.SearchItem picture .icon-add {
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  top: 0;
+  right: 1rem;
+  filter: invert(29%) sepia(55%) saturate(1522%) hue-rotate(151deg) brightness(89%) contrast(101%);
+}
+.SearchItem .Search-item-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 0.8rem;
+  text-align: left;
+}
+@media screen and (min-width: 640px) {
+  .SearchItem .Search-item-description {
+    font-size: 0.9rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .SearchItem .Search-item-description {
+    font-size: 0.9rem;
+  }
+}/*# sourceMappingURL=SearchItems.css.map */
