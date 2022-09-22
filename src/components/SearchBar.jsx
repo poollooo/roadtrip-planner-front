@@ -36,7 +36,9 @@ const SearchBar = () => {
         to={searchCity}
         className="bg-green-pine w-[16vw] h-full rounded-tr-2xl rounded-br-2xl"
       >
-        <button className="justify-center lg:text-[1.5vw] text-[2vw] text-white w-[16vw] h-full">
+        <button className="justify-center lg:text-[1.5vw] text-[2vw] text-white w-[16vw] h-full"
+          onClick={() => window.scrollTo(0, 0)}
+        >
           Start Exploring
         </button>
       </Link>
