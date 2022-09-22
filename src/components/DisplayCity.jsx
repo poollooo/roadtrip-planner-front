@@ -9,7 +9,7 @@ import QueryContext from "../Context/QueryContext";
 import SearchItemPopUp from './SearchItemPopUp'
 import ButtonComponent from "./ButtonComponent";
 
-const SearchResult = () => {
+const DisplayCity = () => {
   const { city } = useParams();
   const [cityData, setCityData] = useState("");
   console.log('cityData is :', cityData)
@@ -132,4 +132,4 @@ const SearchResult = () => {
   );
 };
 
-export default SearchResult;
+export default DisplayCity;

@@ -2,7 +2,7 @@ import "./App.css";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./components/HomePage";
-import SearchResult from "./components/SearchResult";
+import DisplayCity from "./components/DisplayCity";
 import CreateTrip from "./components/CreateTrip";
 import UserProfile from "./components/UserProfile";
 import DisplayCards from "./components/DisplayCards";
@@ -37,7 +37,7 @@ function App() {
               <Route element={<Layout />}>
                 <Route path="/" element={<HomePage />} />
 
-                <Route path="/:city" element={<SearchResult />} />
+                <Route path="/:city" element={<DisplayCity />} />
                 <Route path="/:city/new-trip" element={<CreateTrip />} />
 
                 <Route path="/users/:username" element={
