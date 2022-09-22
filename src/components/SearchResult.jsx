@@ -64,6 +64,7 @@ const SearchResult = () => {
     day = day > 1 ? `${day} days` : `${day} day`;
     return `${year}  ${month}  ${day} `;
   };
+
   const monthOfYear = [
     "Jan",
     "Fev",
@@ -79,14 +80,23 @@ const SearchResult = () => {
     "Dec",
   ];
 
+  // find is there is a NaN in the tripDuration
+  const isTripDurationNaN = tripDuration(searchQuery).includes("NaN");
+  console.log('tripDuration is', isTripDurationNaN)
+
   return (
     <div className="Search-result-container">
-      <h1 className="Search-header leading-tight w-full">
-        How to spend {tripDuration(searchQuery)} in {city.charAt(0).toUpperCase() + city.slice(1)}
-      </h1>
-      <p className="Search-date">{`${monthOfYear[searchQuery.startDate.month - 1]
-        } ${searchQuery.startDate.date} - ${monthOfYear[searchQuery.endDate.month - 1]
-        } ${searchQuery.endDate.date}`}</p>
+      {!isTripDurationNaN &&
+        <>
+          <h1 className="Search-header leading-tight w-full">
+            How to spend {tripDuration(searchQuery)} in {city.charAt(0).toUpperCase() + city.slice(1)}
+          </h1>
+          <p className="Search-date">{`${monthOfYear[searchQuery.startDate.month - 1]
+            } ${searchQuery.startDate.date} - ${monthOfYear[searchQuery.endDate.month - 1]
+            } ${searchQuery.endDate.date}`}
+          </p>
+        </>
+      }
       <section className="City-intro rounded-lg shadow-lg bg-gray-50 leading-normal">
         <h2>
           <strong>{city.charAt(0).toUpperCase() + city.slice(1)}</strong>
