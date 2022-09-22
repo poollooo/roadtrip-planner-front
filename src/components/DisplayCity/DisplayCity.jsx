@@ -43,8 +43,9 @@ const DisplayCity = () => {
   }, [city]);
 
   if (!searchresult) {
+    const cityCapitalized = city.charAt(0).toUpperCase() + city.slice(1);
     return (
-      <PlaneLoading text={"Finding the coolest things to do"} />
+      <PlaneLoading text={`Searching the coolest things to do in ${cityCapitalized}`} />
     )
   }
 
