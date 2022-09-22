@@ -35,7 +35,9 @@ const DisplayCards = ({ headerContent, trip }) => {
               <Card
                 // add the city name with the first letter in capital
                 title={city.name.charAt(0).toUpperCase() + city.name.slice(1)}
-                desc="Sept 2022 05 - Sept 2022 07"
+                // add the first 10 words of the city description and add "..."
+                desc={city.description.split(" ").slice(0, 10).join(" ") + "..."}
+                city={city.name}
                 image={city.image}
                 key={city._id}
               />
