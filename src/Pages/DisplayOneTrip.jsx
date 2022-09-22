@@ -3,9 +3,9 @@ import React from "react";
 import { useState, useEffect } from "react";
 
 import { useParams } from "react-router-dom";
-import Calendar from "./Calendar";
+import Calendar from "../components/Calendar";
 import { ORIGIN } from "../utils/const";
-import LoadingPlane from "./PlaneLoading";
+import LoadingPlane from "../components/PlaneLoading";
 
 const DisplayOneTrip = () => {
   const [tripData, setTripData] = useState("");

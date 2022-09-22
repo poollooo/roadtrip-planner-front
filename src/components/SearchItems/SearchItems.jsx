@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
-import { SearchContext } from "../Context/SearchResultContext";
+import { SearchContext } from "../../Context/SearchResultContext";
 import "./SearchItems.scss";
-import addSvg from '../images/choose.svg'
-import addedSvg from '../images/choosed.svg'
+import addSvg from '../../images/choose.svg'
+import addedSvg from '../../images/choosed.svg'
 
 
 const SearchItems = ({ item, isHidden, setCurrentActivity }) => {

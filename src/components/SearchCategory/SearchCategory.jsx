@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./SearchCategory.scss";
-
-import SearchItems from "./SearchItems";
+import SearchItems from "../SearchItems/SearchItems";
 
 const SearchCategory = ({ searchresult, setCurrentActivity }) => {
   const [isShowingMore, setIsShowingMore] = useState(false);

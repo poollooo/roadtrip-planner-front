@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import HeroImage from "../images/Hero-Image.svg";
-import SearchBar from "./SearchBar";
-import DisplayCards from "./DisplayCards";
+import SearchBar from "../components/SearchBar";
+import DisplayCards from "../components/DisplayCards";
 import { AuthContext } from "../Context/AuthContext";
 
 const HomePage = () => {

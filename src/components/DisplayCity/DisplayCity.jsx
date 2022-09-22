@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
-import SearchCategory from "./SearchCategory";
-import "./SearchResult.scss";
-import PlaneLoading from "./PlaneLoading";
-import { ORIGIN } from "../utils/const"
-import QueryContext from "../Context/QueryContext";
-import SearchItemPopUp from './SearchItemPopUp'
-import ButtonComponent from "./ButtonComponent";
+import SearchCategory from "../SearchCategory/SearchCategory";
+import "../DisplayCity/DisplayCity.scss";
+import PlaneLoading from "../PlaneLoading";
+import { ORIGIN } from "../../utils/const"
+import QueryContext from "../../Context/QueryContext";
+import SearchItemPopUp from '../SearchItemPopUp/SearchItemPopUp';
+import ButtonComponent from "../ButtonComponent";
 
 const DisplayCity = () => {
   const { city } = useParams();
@@ -115,9 +115,11 @@ const DisplayCity = () => {
       />
 
       <div className="pt-4 pb-12">
-        <Link to={`/${city}/new-trip`}>
+        <Link
+          to={`/${city}/new-trip`}
+          onClick={() => window.scrollTo(0, 0)}
+        >
           <ButtonComponent text={"Create a new trip"} width={"w-[20vw]"}
-            onClick={() => window.scrollTo(0, 0)}
           />
         </Link>
 

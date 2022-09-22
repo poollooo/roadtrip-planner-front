@@ -1,18 +1,18 @@
 import "./App.css";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import HomePage from "./components/HomePage";
-import DisplayCity from "./components/DisplayCity";
-import CreateTrip from "./components/CreateTrip";
+import HomePage from "./Pages/HomePage";
+import DisplayCity from "./components/DisplayCity/DisplayCity";
+import CreateTrip from "./Pages/CreateTrip";
 import UserProfile from "./components/UserProfile";
 import DisplayCards from "./components/DisplayCards";
-import DisplayOneTrip from "./components/DisplayOneTrip";
-import SignupPage from "./components/SignupPage";
+import DisplayOneTrip from "./Pages/DisplayOneTrip";
+import SignupPage from "./Pages/SignupPage";
 import Layout from "./components/Layout";
 import { useState } from "react";
 import QueryContext from "./Context/QueryContext";
 import { SearchContextProvider } from "./Context/SearchResultContext";
-import LoginPage from "./components/LoginPage";
+import LoginPage from "./Pages/LoginPage";
 import IsPrivate from "./components/isPrivate";
 import IsAnon from "./components/isAnonymous";
 

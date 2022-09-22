@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import Calendar from "./Calendar";
+import Calendar from "../components/Calendar";
 import QueryContext from "../Context/QueryContext";
 
 const CreateTrip = () => {
