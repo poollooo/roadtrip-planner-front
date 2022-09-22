@@ -3,6 +3,7 @@ import { SearchContext } from "../Context/SearchResultContext";
 import "./SearchItems.scss";
 import addSvg from '../images/choose.svg'
 import addedSvg from '../images/choosed.svg'
+import ButtonComponent from "./ButtonComponent";
 
 
 const SearchItems = ({ item, isHidden, setCurrentActivity }) => {
@@ -70,11 +71,10 @@ const SearchItems = ({ item, isHidden, setCurrentActivity }) => {
         </div>
         <div>
           <button
-            className="bg-green-pine text-white rounded-md w-14 border-2 border-green-pine"
+            className="bg-green-pine text-white rounded-md w-14 border-2 border-green-pine hover:bg-white hover:text-green-pine"
             // switch className if the item is selected
             {...(cancelSelected && { className: "bg-white text-green-pine border-2 border-green-pine rounded-md w-20" })}
-            onClick={handleSelect}
-          >
+            onClick={handleSelect}>
             {!cancelSelected ? 'Add' : 'Remove'}
           </button>
         </div>

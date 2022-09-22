@@ -7,6 +7,7 @@ import PlaneLoading from "./PlaneLoading";
 import { ORIGIN } from "../utils/const"
 import QueryContext from "../Context/QueryContext";
 import SearchItemPopUp from './SearchItemPopUp'
+import ButtonComponent from "./ButtonComponent";
 
 const SearchResult = () => {
   const { city } = useParams();
@@ -81,14 +82,14 @@ const SearchResult = () => {
   return (
     <div className="Search-result-container">
       <h1 className="Search-header leading-tight">
-        How to spend {tripDuration(searchQuery)} <br /> in {city}
+        How to spend {tripDuration(searchQuery)} <br /> in {city.charAt(0).toUpperCase() + city.slice(1)}
       </h1>
       <p className="Search-date">{`${monthOfYear[searchQuery.startDate.month - 1]
         } ${searchQuery.startDate.date} - ${monthOfYear[searchQuery.endDate.month - 1]
         } ${searchQuery.endDate.date}`}</p>
-      <section className="City-intro rounded-lg shadow-lg bg-gray-50">
+      <section className="City-intro rounded-lg shadow-lg bg-gray-50 leading-normal">
         <h2>
-          <strong>{cityData?.name}</strong>
+          <strong>{city.charAt(0).toUpperCase() + city.slice(1)}</strong>
         </h2>
         <p className="City-description">
           {cityData?.description}
@@ -103,9 +104,9 @@ const SearchResult = () => {
         setCurrentActivity={setCurrentActivity}
       />
 
-      <div>
+      <div className="pt-4 pb-12">
         <Link to={`/${city}/new-trip`}>
-          <button className="planning-button"> Planning My Trip </button>
+          <ButtonComponent text={"Create a new trip"} width={"w-[20vw]"} />
         </Link>
 
       </div>
