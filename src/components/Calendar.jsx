@@ -5,7 +5,7 @@ import restIcon from "../images/restaurant-icon.png";
 import actIcon from "../images/activities-icon.png";
 import axios from "axios";
 import { SearchContext } from "../Context/SearchResultContext";
-import { ORIGIN } from "../utils/const"
+import { ORIGIN } from "../utils/const";
 
 import {
   Inject,
@@ -20,13 +20,11 @@ import {
 import { TreeViewComponent } from "@syncfusion/ej2-react-navigations";
 import { useNavigate } from "react-router-dom";
 
-const Calendar = ({ tripData, readOnly, focus, startDate, endDate }) => {
+const Calendar = ({ tripData, readOnly, focus, startDate }) => {
   const { selectedExperience } = useContext(SearchContext);
   const [schedulerEventData, setSchedulerEventData] =
     useState(selectedExperience);
   const myRef = useRef();
-
-  let data2 = "";
   const navigate = useNavigate();
   const onDragStart = (drag) => {
     drag.navigation.enable = true;
@@ -55,21 +53,14 @@ const Calendar = ({ tripData, readOnly, focus, startDate, endDate }) => {
     img: "photo",
   };
 
-  if (readOnly) {
-    const data2 = {
-      dataSource: tripData.map((activity, index) => ({
-        Id: index + 1,
-        Subject: activity.activityId.name,
-        StartTime: activity.startDate,
-        EndTime: activity.endDate,
-      })),
-    };
-    console.log("data2", data2);
-  }
   //defining new display for activties list
   const nodeTemplate = (data) => {
     return (
-      <div className="flex justify-start items-center gap-2 w-full  text-sm h-[6rem]">
+      <div
+        data-name={data.name}
+        data-address={data.address}
+        className="flex justify-start items-center gap-2 w-full  text-sm h-[6rem]"
+      >
         <img
           src={data.photo[0]}
           alt="temp"
@@ -94,7 +85,6 @@ const Calendar = ({ tripData, readOnly, focus, startDate, endDate }) => {
   //allow to add event to the scheduler
   const onDragStop = (event) => {
     const cellData = myRef.current.getCellDetails(event.target);
-    console.log(event.target);
     const newEvent = {
       Subject: event.draggedNodeData.text,
       StartTime: cellData.startTime,
@@ -115,6 +105,7 @@ const Calendar = ({ tripData, readOnly, focus, startDate, endDate }) => {
 
   //exporting Planning to the database
   const scheduleValidation = () => {
+    console.log("myref", myRef.current.eventsData);
     if (myRef.current.eventsData.length === 0) {
       window.alert("Please add activities to your trip before saving");
       return;
@@ -129,7 +120,7 @@ const Calendar = ({ tripData, readOnly, focus, startDate, endDate }) => {
         name: event.Subject,
       };
     });
-    console.log(newActivityList);
+
     const token = localStorage.getItem("authToken");
     const config = {
       method: "post",
@@ -149,7 +140,7 @@ const Calendar = ({ tripData, readOnly, focus, startDate, endDate }) => {
         const trip = response.data.tripCreated._id;
         const tripLink =
           "/users/" + localStorage.getItem("user") + "/trips/" + trip;
-        console.log(response.data);
+        console.log("req resp", response.data);
         navigate(tripLink);
       })
       .catch(function (error) {
@@ -201,7 +192,8 @@ const Calendar = ({ tripData, readOnly, focus, startDate, endDate }) => {
           selectedDate={startDate}
           dragStart={onDragStart}
           isResponsive={true}
-          eventSettings={data2}
+          eventSettings={tripData}
+          readonly={readOnly}
         >
           <ViewsDirective>
             <ViewDirective

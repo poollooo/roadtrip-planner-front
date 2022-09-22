@@ -1,10 +1,11 @@
 import axios from "axios";
 import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+
 import { useParams } from "react-router-dom";
 import Calendar from "./Calendar";
-import { ORIGIN } from "../utils/const"
+import { ORIGIN } from "../utils/const";
+import LoadingPlane from "./PlaneLoading";
 
 const DisplayOneTrip = () => {
   const [tripData, setTripData] = useState("");
@@ -15,7 +16,7 @@ const DisplayOneTrip = () => {
 
     const config = {
       method: "get",
-      url: `${ORIGIN}/trips/` + param,
+      url: `${ORIGIN}/trips/` + tripId,
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -30,12 +31,25 @@ const DisplayOneTrip = () => {
       });
   }, [param]);
 
+  if (tripData === "") {
+    return <LoadingPlane />;
+  }
+  console.log(tripData);
+  const data = {
+    dataSource: tripData.activitiesFound.map((activity, index) => ({
+      Id: index + 1,
+      Subject: activity.activityId.name,
+      StartTime: activity.startDate,
+      EndTime: activity.endDate,
+    })),
+  };
+  console.log(tripData);
   return (
     <>
       <div className="flex justify-center">
         <Calendar
-          tripData={tripData}
-          startDate={tripData.startDate}
+          tripData={data}
+          startDate={tripData.tripFound.startDate}
           readOnly={true}
           focus={true}
         ></Calendar>

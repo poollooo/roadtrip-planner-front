@@ -14,3 +14,7 @@
   background: #03666b !important;
   padding-left: 0.5rem !important;
 }
+
+.e-quick-popup-wrapper .e-event-popup .e-popup-header {
+  background: #03666b !important;
+}
