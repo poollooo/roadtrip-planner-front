@@ -81,8 +81,8 @@ const SearchResult = () => {
 
   return (
     <div className="Search-result-container">
-      <h1 className="Search-header leading-tight">
-        How to spend {tripDuration(searchQuery)} <br /> in {city.charAt(0).toUpperCase() + city.slice(1)}
+      <h1 className="Search-header leading-tight w-full">
+        How to spend {tripDuration(searchQuery)} in {city.charAt(0).toUpperCase() + city.slice(1)}
       </h1>
       <p className="Search-date">{`${monthOfYear[searchQuery.startDate.month - 1]
         } ${searchQuery.startDate.date} - ${monthOfYear[searchQuery.endDate.month - 1]
