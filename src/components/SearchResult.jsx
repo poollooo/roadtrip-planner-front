@@ -10,18 +10,31 @@ import SearchItemPopUp from './SearchItemPopUp'
 
 const SearchResult = () => {
   const { city } = useParams();
+  const [cityData, setCityData] = useState("");
+  console.log('cityData is :', cityData)
+
   const [searchresult, setSearchResult] = useState();
   const { searchQuery } = useContext(QueryContext);
   const [currentActivity, setCurrentActivity] = useState(null); //show choosed item detail 
+  console.log('search result is', searchresult)
 
   useEffect(() => {
     const config = {
       method: "get",
       url: `${ORIGIN}/search/${city}`,
     };
+    const config2 = {
+      method: "get",
+      url: `${ORIGIN}/cities/${city}`,
+    };
     axios(config)
       .then(function (response) {
         setSearchResult(response.data);
+        axios(config2)
+          .then(function (response) {
+            console.log('response is :', response.data)
+            setCityData(response.data);
+          })
       })
       .catch(function (error) {
         console.error(error);
@@ -67,23 +80,18 @@ const SearchResult = () => {
 
   return (
     <div className="Search-result-container">
-      <h1 className="Search-header">
+      <h1 className="Search-header leading-tight">
         How to spend {tripDuration(searchQuery)} <br /> in {city}
       </h1>
-      <p className="Search-date">{`${
-        monthOfYear[searchQuery.startDate.month - 1]
-      } ${searchQuery.startDate.date} - ${
-        monthOfYear[searchQuery.endDate.month - 1]
-      } ${searchQuery.endDate.date}`}</p>
-      <section className="City-intro">
+      <p className="Search-date">{`${monthOfYear[searchQuery.startDate.month - 1]
+        } ${searchQuery.startDate.date} - ${monthOfYear[searchQuery.endDate.month - 1]
+        } ${searchQuery.endDate.date}`}</p>
+      <section className="City-intro rounded-lg shadow-lg bg-gray-50">
         <h2>
-          <strong>{city}</strong>
+          <strong>{cityData?.name}</strong>
         </h2>
         <p className="City-description">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus,
-          nam dicta temporibus, veritatis in rem expedita laborum, tempore ab
-          dolor voluptatibus fuga error. Eum earum nam nobis quod asperiores
-          soluta!
+          {cityData?.description}
         </p>
       </section>
       <SearchCategory
@@ -99,7 +107,7 @@ const SearchResult = () => {
         <Link to={`/${city}/new-trip`}>
           <button className="planning-button"> Planning My Trip </button>
         </Link>
-        
+
       </div>
       {currentActivity && (
         <SearchItemPopUp
