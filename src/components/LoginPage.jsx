@@ -2,8 +2,10 @@ import { useState, useContext } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
+import { ORIGIN } from "../utils/const"
 
-const API_URL = process.env.ORIGIN_PROD || "http://localhost:3003/api";
+const API_URL = `${ORIGIN}`
+console.log(ORIGIN);
 
 function LoginPage(props) {
   const [username, setUsername] = useState("");
