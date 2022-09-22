@@ -55,7 +55,7 @@ const SearchItems = ({ item, isHidden, setCurrentActivity }) => {
           />
         </button>
       </picture>
-      <div className="flex items-end w-full justify-between">
+      <div className="flex items-end w-full justify-between pb-8">
         <div className="flex flex-col items-start mt-1 justify-start">
           <h3>
             <strong>{item.name.length > 24 ? item.name.slice(0, 24) + '...' : item.name}</strong>
