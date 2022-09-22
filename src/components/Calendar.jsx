@@ -19,6 +19,7 @@ import {
 
 import { TreeViewComponent } from "@syncfusion/ej2-react-navigations";
 import { useNavigate } from "react-router-dom";
+import ButtonComponent from "./ButtonComponent";
 
 const Calendar = ({ tripData, readOnly, focus, startDate }) => {
   const { selectedExperience } = useContext(SearchContext);
@@ -152,7 +153,7 @@ const Calendar = ({ tripData, readOnly, focus, startDate }) => {
     <>
       {!readOnly && (
         <div className="w-2/5 mt-[56px]">
-          <p>Activities list </p>
+          <p className="text-xl font-medium ml-8">Activities list</p>
           {data && (
             <TreeViewComponent
               fields={data}
@@ -171,14 +172,18 @@ const Calendar = ({ tripData, readOnly, focus, startDate }) => {
             </div>
           )}
         </div>
-      )}
+      )
+      }
       <div className="w-[800px]">
-        <div className="flex justify-end">
+        <div className="flex justify-end mb-4">
           <button
-            className="bg-[#03666b] p-2 m-2 border-r text-white"
             onClick={readOnly ? scheduleValidation : scheduleValidation}
           >
-            {readOnly ? <p>Edit your trip</p> : <p>Save your trip</p>}
+            {readOnly ?
+              <ButtonComponent text={"Edit your Trip"} width={"10vw"} />
+              :
+              <ButtonComponent text={"Save your trip"} width={"10vw"} />
+            }
           </button>
         </div>
         <ScheduleComponent
