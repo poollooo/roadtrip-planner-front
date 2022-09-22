@@ -18,7 +18,7 @@ const Header = () => {
         />
       </Link>
       <nav className="flex justify-between items-center text-center ">
-        <ul className="flex justify-between text-xs sm:text-sm md:text-md whitespace-nowrap ">
+        <ul className="flex justify-between text-xs sm:text-sm md:text-lg whitespace-nowrap ">
           <li className="mx-4">
             <Link to='/' className="hover:text-green-pine">
               <p>Home</p>
