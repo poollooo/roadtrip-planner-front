@@ -20,6 +20,7 @@ import {
 import { TreeViewComponent } from "@syncfusion/ej2-react-navigations";
 import { useNavigate } from "react-router-dom";
 import ButtonComponent from "./ButtonComponent";
+import PlaneLoading from "./PlaneLoading";
 
 const Calendar = ({ tripData, readOnly, focus, startDate }) => {
   const { selectedExperience } = useContext(SearchContext);
@@ -32,7 +33,7 @@ const Calendar = ({ tripData, readOnly, focus, startDate }) => {
     drag.navigation.timeDelay = 1000;
   };
   if (!tripData && readOnly) {
-    return <p>loading</p>;
+    return <PlaneLoading text={"Calendar loading"}></PlaneLoading>;
   }
 
   const data = {
@@ -65,7 +66,7 @@ const Calendar = ({ tripData, readOnly, focus, startDate }) => {
         <img
           src={data.photo[0]}
           alt="temp"
-          className="h-full w-[175px] object-cover rounded-lg"
+          className="h-full min-w-[175px]   object-cover rounded-lg"
         />
         <div className="flex flex-col content-between">
           <p className="font-medium text-lg">{data.name}</p>
@@ -135,7 +136,7 @@ const Calendar = ({ tripData, readOnly, focus, startDate }) => {
         name: "TirrTrr",
       },
     };
-
+    console.log(config);
     axios(config)
       .then(function (response) {
         const trip = response.data.tripCreated._id;
@@ -172,15 +173,22 @@ const Calendar = ({ tripData, readOnly, focus, startDate }) => {
             </div>
           )}
         </div>
-      )
-      }
+      )}
       <div className="w-[800px]">
         <div className="flex justify-end mb-4">
-          {readOnly ?
-            <ButtonComponent text={"Edit your Trip"} width={"10vw"} />
-            :
-            <ButtonComponent text={"Save your trip"} width={"10vw"} />
-          }
+          {readOnly ? (
+            <ButtonComponent
+              text={"Edit your Trip"}
+              width={"10vw"}
+              scheduleValidation={scheduleValidation}
+            />
+          ) : (
+            <ButtonComponent
+              text={"Save your trip"}
+              width={"10vw"}
+              scheduleValidation={scheduleValidation}
+            />
+          )}
         </div>
         <ScheduleComponent
           height={800}
