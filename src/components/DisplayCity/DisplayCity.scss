@@ -49,18 +49,11 @@
     }
     @media #{$lg} {
       padding: 1.5rem 1.5rem;
-      margin-bottom: 3rem;
     }
   }
   .City-description {
     align-self: center;
-    font-size: 0.5rem;
-    @media #{$sm} {
-      font-size: 0.8rem;
-    }
-    @media #{$md} {
-      font-size: 0.8rem;
-    }
+    font-size: 14px;
   }
 
   .planning-button {
@@ -72,5 +65,11 @@
     color: white;
     border-radius: 10px;
     font-weight: 800;
+  }
+  .headerTop {
+    min-width: 100%;
+    min-height: 38rem;
+    background-size: cover;
+    margin-bottom: 3rem;
   }
 }

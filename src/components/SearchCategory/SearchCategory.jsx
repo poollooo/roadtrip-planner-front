@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./SearchCategory.scss";
 import SearchItems from "../SearchItems/SearchItems";
 
-const SearchCategory = ({ searchresult, setCurrentActivity }) => {
+const SearchCategory = ({ searchresult, setCurrentActivity, tripCreation }) => {
   const [isShowingMore, setIsShowingMore] = useState(false);
   const [searchInput, setSearchInput] = useState("");
 
@@ -14,6 +14,7 @@ const SearchCategory = ({ searchresult, setCurrentActivity }) => {
         key={ele._id}
         item={itemsToFind}
         isHidden={!isShowingMore && i > 5}
+        tripCreation={tripCreation}
       />
     );
   });

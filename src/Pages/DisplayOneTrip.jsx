@@ -50,7 +50,7 @@ const DisplayOneTrip = () => {
       <div className="Search-result-container">
         <div>
           <h1 className="Search-header leading-tight w-full">
-            Your trip
+            Your trip to{" "}
             <span className="italic">{tripData.tripFound.name}</span>
           </h1>
           <p className="Search-date">
