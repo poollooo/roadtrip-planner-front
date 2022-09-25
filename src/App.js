@@ -17,10 +17,10 @@ import IsPrivate from "./components/isPrivate";
 import IsAnon from "./components/isAnonymous";
 
 const initialQuery = {
-  city: '',
-  startDate: '',
-  endDate: '',
-}
+  city: "",
+  startDate: "",
+  endDate: "",
+};
 
 function App() {
   const [selectedExperience, setSelectedExperience] = useState([]);
@@ -40,33 +40,42 @@ function App() {
                 <Route path="/:city" element={<DisplayCity />} />
                 <Route path="/:city/new-trip" element={<CreateTrip />} />
 
-                <Route path="/users/:username" element={
-                  <UserProfile />
-                } />
+                <Route path="/users/:username" element={<UserProfile />} />
 
-                <Route path="/users/:username/trips" element={
-                  <IsPrivate>
-                    <DisplayCards />
-                  </IsPrivate>} />
+                <Route
+                  path="/users/:username/trips"
+                  element={
+                    <IsPrivate>
+                      <UserProfile />
+                    </IsPrivate>
+                  }
+                />
 
                 <Route
                   path="/users/:username/trips/:tripId"
                   element={
                     <IsPrivate>
                       <DisplayOneTrip />
-                    </IsPrivate>}
+                    </IsPrivate>
+                  }
                 />
 
-                <Route path="/signup" element={
-                  <IsAnon>
-                    <SignupPage />
-                  </IsAnon>
-                } />
-                <Route path="/login" element={
-                  <IsAnon>
-                    <LoginPage />
-                  </IsAnon>
-                } />
+                <Route
+                  path="/signup"
+                  element={
+                    <IsAnon>
+                      <SignupPage />
+                    </IsAnon>
+                  }
+                />
+                <Route
+                  path="/login"
+                  element={
+                    <IsAnon>
+                      <LoginPage />
+                    </IsAnon>
+                  }
+                />
               </Route>
             </Routes>
           </div>

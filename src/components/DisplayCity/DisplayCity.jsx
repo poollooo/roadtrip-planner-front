@@ -12,7 +12,6 @@ import ButtonComponent from "../ButtonComponent";
 const DisplayCity = () => {
   const { city } = useParams();
   const [cityData, setCityData] = useState("");
-  console.log("cityData is :", cityData);
 
   const [searchresult, setSearchResult] = useState();
   const { searchQuery } = useContext(QueryContext);
@@ -39,9 +38,9 @@ const DisplayCity = () => {
       .catch(function (error) {
         console.error(error);
       });
-  }, [city]);
+  }, []);
 
-  if (!searchresult) {
+  if (!searchresult && !cityData) {
     const cityCapitalized = city.charAt(0).toUpperCase() + city.slice(1);
     return (
       <PlaneLoading
@@ -98,47 +97,53 @@ const DisplayCity = () => {
 
   // find is there is a NaN in the tripDuration
   const isTripDurationNaN = tripDuration(searchQuery).includes("NaN");
-  console.log("tripDuration is", isTripDurationNaN);
 
   return (
     <div className="Search-result-container">
-      <div>
+      <div
+        style={{ backgroundImage: `url(${cityData.image})` }}
+        className="headerTop min-h-[20rem] flex flex-col justify-center items-center gap-20 rounded-lg"
+      >
         {!isTripDurationNaN && (
-          <>
-            <h1 className="Search-header leading-tight w-full">
+          <div className="">
+            <h1 className="Search-header leading-tight w-full ">
               How to spend
               <span className="italic">{tripDuration(searchQuery)}</span>
               in {city.charAt(0).toUpperCase() + city.slice(1)}
             </h1>
-            <p className="Search-date">
+            <span className="Search-date">
               {`${monthOfYear[searchQuery.startDate.month - 1]} ${
                 searchQuery.startDate.date
               } -  ${monthOfYear[searchQuery.endDate.month - 1]} ${
                 searchQuery.endDate.date
               }`}
-            </p>
-          </>
+            </span>
+          </div>
         )}
+        <section className="City-intro rounded-lg shadow-lg bg-gray-50 leading-normal">
+          <h2>
+            <strong>{city.charAt(0).toUpperCase() + city.slice(1)}</strong>
+          </h2>
+          <p className="City-description">{cityData?.description}</p>
+        </section>
       </div>
 
-      <section className="City-intro rounded-lg shadow-lg bg-gray-50 leading-normal">
-        <h2>
-          <strong>{city.charAt(0).toUpperCase() + city.slice(1)}</strong>
-        </h2>
-        <p className="City-description">{cityData?.description}</p>
-      </section>
       <SearchCategory
         searchresult={restaurantList}
         setCurrentActivity={setCurrentActivity}
+        tripCreation={!isTripDurationNaN}
       />
       <SearchCategory
         searchresult={attractionList}
         setCurrentActivity={setCurrentActivity}
+        tripCreation={!isTripDurationNaN}
       />
 
       <div className="pt-4 pb-12">
         <Link to={`/${city}/new-trip`} onClick={() => window.scrollTo(0, 0)}>
-          <ButtonComponent text={"Create a new trip"} width={"w-[20vw]"} />
+          {!isTripDurationNaN && (
+            <ButtonComponent text={"Create a new trip"} width={"w-[20vw]"} />
+          )}
         </Link>
       </div>
       {currentActivity && (

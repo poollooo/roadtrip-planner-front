@@ -6,7 +6,7 @@ import actIcon from "../images/activities-icon.png";
 import axios from "axios";
 import { SearchContext } from "../Context/SearchResultContext";
 import { ORIGIN } from "../utils/const";
-
+import QueryContext from "../Context/QueryContext";
 import {
   Inject,
   ScheduleComponent,
@@ -24,6 +24,7 @@ import PlaneLoading from "./PlaneLoading";
 
 const Calendar = ({ tripData, readOnly, focus, startDate }) => {
   const { selectedExperience } = useContext(SearchContext);
+  const { searchQuery } = useContext(QueryContext);
   const [schedulerEventData, setSchedulerEventData] =
     useState(selectedExperience);
   const myRef = useRef();
@@ -131,12 +132,21 @@ const Calendar = ({ tripData, readOnly, focus, startDate }) => {
       data: {
         newActivityList,
         cityLocationId: selectedExperience[0].cityLocationId,
-        startDate: newActivityList[0].startDate,
-        endDate: newActivityList[0].endDate,
-        name: "TirrTrr",
+        startDate: new Date(
+          searchQuery.startDate.year,
+          searchQuery.startDate.month - 1,
+          searchQuery.startDate.date
+        ),
+        endDate: new Date(
+          searchQuery.endDate.year,
+          searchQuery.endDate.month - 1,
+          searchQuery.endDate.date
+        ),
+        name:
+          searchQuery.city.charAt(0).toUpperCase() + searchQuery.city.slice(1),
       },
     };
-    console.log(config);
+
     axios(config)
       .then(function (response) {
         const trip = response.data.tripCreated._id;
@@ -149,7 +159,14 @@ const Calendar = ({ tripData, readOnly, focus, startDate }) => {
         console.log(error);
       });
   };
-
+  console.log(
+    "seach",
+    new Date(
+      searchQuery.startDate.year,
+      searchQuery.startDate.month - 1,
+      searchQuery.startDate.date
+    )
+  );
   return (
     <>
       {!readOnly && (
