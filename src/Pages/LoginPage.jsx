@@ -2,10 +2,9 @@ import { useState, useContext } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
-import { ORIGIN } from "../utils/const"
+import { ORIGIN } from "../utils/const";
 
-const API_URL = `${ORIGIN}`
-console.log(ORIGIN);
+const API_URL = `${ORIGIN}`;
 
 function LoginPage(props) {
   const [username, setUsername] = useState("");
@@ -28,7 +27,6 @@ function LoginPage(props) {
       .then((response) => {
         // Request to the server's endpoint `/auth/login` returns a response
         // with the JWT string ->  response.data.authToken
-        //console.log("The user JWT token is :", response.data)
 
         // Store the JWT token in the browser's localStorage
         localStorage.setItem("user", requestBody.username);

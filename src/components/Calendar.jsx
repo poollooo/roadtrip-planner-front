@@ -108,7 +108,6 @@ const Calendar = ({ tripData, readOnly, focus, startDate }) => {
 
   //exporting Planning to the database
   const scheduleValidation = () => {
-    console.log("myref", myRef.current.eventsData);
     if (myRef.current.eventsData.length === 0) {
       window.alert("Please add activities to your trip before saving");
       return;
@@ -152,21 +151,14 @@ const Calendar = ({ tripData, readOnly, focus, startDate }) => {
         const trip = response.data.tripCreated._id;
         const tripLink =
           "/users/" + localStorage.getItem("user") + "/trips/" + trip;
-        console.log("req resp", response.data);
+
         navigate(tripLink);
       })
       .catch(function (error) {
         console.log(error);
       });
   };
-  console.log(
-    "seach",
-    new Date(
-      searchQuery.startDate.year,
-      searchQuery.startDate.month - 1,
-      searchQuery.startDate.date
-    )
-  );
+
   return (
     <>
       {!readOnly && (

@@ -41,7 +41,6 @@ const DisplayCards = ({ headerContent, trip, limit, data }) => {
   if (!trips && !cities) {
     return <PlaneLoading text="Loading data" />;
   }
-  console.log("trips", trips);
 
   return (
     <div className="flex flex-col w-[80vw] shadow-lg pl-14 pr-14 pt-8 pb-8 bg-offwhite-100 rounded-2xl">

@@ -16,7 +16,6 @@ const DisplayCity = () => {
   const [searchresult, setSearchResult] = useState();
   const { searchQuery } = useContext(QueryContext);
   const [currentActivity, setCurrentActivity] = useState(null); //show choosed item detail
-  console.log("search result is", searchresult);
 
   useEffect(() => {
     const config = {
